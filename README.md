@@ -11,3 +11,7 @@ TODO
 ## CSS class list
 
 TODO (Wikiに作りそう)
+
+## How to collect past contests' information or problems
+
+
