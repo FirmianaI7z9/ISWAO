@@ -1,0 +1,145 @@
+/* color */
+.color-black {
+  color: #000;
+}
+
+.color-white {
+  color: #fff;
+}
+
+.color-mathematics {
+  color: #4dccff;
+}
+
+.color-physics {
+  color: #002060;
+}
+
+.color-chemistry {
+  color: #ff0;
+}
+
+.color-biology {
+  color: #e60000;
+}
+
+.color-earthscience {
+  color: #ffc000;
+}
+
+.color-informatics {
+  color: #7030a0;
+}
+
+.color-kako {
+  color: #9e0000;
+}
+
+.color-linguistics {
+  color: #ff8224;
+}
+
+.color-astronomy {
+  color: #000;
+}
+
+.color-geography {
+  color: #92d050;
+}
+
+.color-philosophy {
+  color: #f2f2f2;
+}
+
+.color-economics {
+  color: #0070c0;
+}
+
+.color-brainscience {
+  color: #006630;
+}
+
+.color-ai {
+  color: #43a;
+}
+
+.color-socialscience {
+  color: #1e6c93;
+}
+
+/* background */
+.background-black {
+  background-color: #000;
+}
+
+.background-white {
+  background-color: #fff;
+}
+
+.background-gray {
+  background-color: #555;
+}
+
+.background-darkgray {
+  background-color: #222;
+}
+
+.background-mathematics {
+  background-color: #80dbff;
+}
+
+.background-physics {
+  background-color: #002060;
+}
+
+.background-chemistry {
+  background-color: #ff0;
+}
+
+.background-biology {
+  background-color: #e60000;
+}
+
+.background-earthscience {
+  background-color: #ffc000;
+}
+
+.background-informatics {
+  background-color: #7030a0;
+}
+
+.background-kako {
+  background-color: #9e0000;
+}
+
+.background-linguistics {
+  background-color: #ff8224;
+}
+
+.background-astronomy {
+  background-color: #000;
+}
+
+.background-geography {
+  background-color: #92d050;
+}
+
+.background-philosophy {
+  background-color: #f2f2f2;
+}
+
+.background-economics {
+  background-color: #0070c0;
+}
+
+.background-brainscience {
+  background-color: #006630;
+}
+
+.background-ai {
+  background-color: #43a;
+}
+
+.background-socialscience {
+  background-color: #1e6c93;
+}
