@@ -1,0 +1,40 @@
+.editorial-link {
+  position: relative;
+  height: fit-content;
+  width: 300px;
+  margin: 5px;
+  padding: 5px;
+  border: solid 1px #0004;
+  border-radius: 3px;
+  box-shadow: #0001 0 0 10px;
+}
+
+.editorial-link a {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.editorial-link a:hover {
+  background-color: #0001;
+}
+
+.editorial-link-title {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Roboto Condensed', 'Noto Sans JP', sans-serif;
+}
+
+.editorial-link-data {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.editorial-link-container {
+  display: flex;
+  flex-wrap: wrap;
+}
