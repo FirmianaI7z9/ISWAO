@@ -1,0 +1,149 @@
+body {
+  padding-top: 80px;
+  font-size: 16px;
+  width: 100%;
+  margin: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+hr {
+  border-color: #0004;
+}
+
+body>hr {
+  margin: 10px 2.5%;
+}
+
+.h2 {
+  margin: 15px 2.5%;
+  font-size: 28px;
+  font-weight: 400;
+  font-variant: small-caps;
+}
+
+.h2::first-letter {
+  color: #0055dd;
+}
+
+.tag {
+  margin: 0 2px;
+  padding: 1px 7px;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 95%;
+  font-family: 'Roboto Condensed', 'Noto Sans JP', '';
+}
+
+/*
+  additional-tag 種類想定
+  1. -yo(予選出場≒参加) -ho(本選出場) -Q(代表選抜参加)
+  2. 年次明示
+  3. 参加回数明示
+*/
+.additional-tag-wrapper {
+  margin: 0 2px;
+  padding: 1px 7px 1px 0;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 95%;
+  font-family: 'Roboto Condensed', 'Noto Sans JP', '';
+}
+
+.additional-tag-innertag {
+  margin: 0 3px 0 0;
+  padding: 1px 3px 1px 7px;
+  border-radius: 2px;
+}
+
+.basic-container {
+  width: 95%;
+  margin: 5px auto;
+  background-color: #fff;
+  border: solid 1px #0004;
+  border-radius: 3px;
+  box-shadow: #0000001a 0 0 30px;
+  overflow: hidden;
+}
+
+.username {
+  font-family: 'Roboto Condensed', 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+}
+
+.username-large {
+  margin: 10px 10px 0 10px;
+  font-size: 32px;
+  font-family: 'Roboto Condensed', 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+}
+
+.user-belongs {
+  margin: 0 10px 10px 10px;
+  color: #888;
+  font-size: 15px;
+  font-family: 'Roboto Condensed', 'Noto Sans JP', sans-serif;
+}
+
+.user-profile-container {
+  margin: 10px;
+}
+
+.user-profile-item {
+  width: 100%;
+  height: fit-content;
+}
+
+.user-profile-item-title {
+  margin: 10px 0;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.user-profile-item-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.user-profile-item-table th,
+.user-profile-item-table td {
+  border: solid 1px #0002;
+}
+
+.user-profile-item-table th {
+  width: 120px;
+}
+
+.button-blue {
+  height: 32px;
+  min-width: 150px;
+  background-color: #0023b8;
+  border: solid 1px #00f3;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 3px;
+  box-shadow: #0023b822 0px 0px 30px;
+}
+
+.button-blue:hover {
+  background-color: #0023b888;
+}
+
+.button-white {
+  height: 32px;
+  min-width: 150px;
+  background-color: #fff;
+  border: solid 1px #00f3;
+  color: #0023b8;
+  font-weight: 500;
+  border-radius: 3px;
+  box-shadow: #0023b811 0px 0px 30px;
+}
+
+.button-white:hover {
+  background-color: #0023b822;
+}
+
+.basic-text {
+  margin: 10px;
+}
