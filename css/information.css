@@ -1,0 +1,55 @@
+.information-item {
+  width: 100%;
+  padding: 10px;
+  border-bottom: solid 1px #0002;
+}
+
+.information-item-datetime {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.information-item-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.information-item-tags {
+  margin: 0;
+}
+
+.information-pagebutton-container {
+  width: fit-content;
+  margin: 10px auto;
+  display: flex;
+}
+
+.information-pagebutton {
+  margin: 0 3px;
+  width: 40px;
+  height: 30px;
+  font-size: 18px;
+  color: #000;
+  background-color: #fff;
+  border: solid 1px #0006;
+  border-radius: 3px;
+  box-shadow: #0001 0 0 10px;
+}
+
+.information-pagebutton:hover {
+  background-color: #0002;
+}
+
+.information-pagebutton-now {
+  margin: 0 3px;
+  width: 40px;
+  height: 30px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #0023b8;
+  border: solid 1px #0006;
+  border-radius: 3px;
+  box-shadow: #0001 0 0 10px;
+}
