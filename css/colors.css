@@ -143,3 +143,64 @@
 .background-socialscience {
   background-color: #1e6c93;
 }
+
+/* border-color */
+.border-mathematics {
+  border-color: #80dbff;
+}
+
+.border-physics {
+  border-color: #002060;
+}
+
+.border-chemistry {
+  border-color: #ff0;
+}
+
+.border-biology {
+  border-color: #e60000;
+}
+
+.border-earthscience {
+  border-color: #ffc000;
+}
+
+.border-informatics {
+  border-color: #7030a0;
+}
+
+.border-kako {
+  border-color: #9e0000;
+}
+
+.border-linguistics {
+  border-color: #ff8224;
+}
+
+.border-astronomy {
+  border-color: #000;
+}
+
+.border-geography {
+  border-color: #92d050;
+}
+
+.border-philosophy {
+  border-color: #f2f2f2;
+}
+
+.border-economics {
+  border-color: #0070c0;
+}
+
+.border-brainscience {
+  border-color: #006630;
+}
+
+.border-ai {
+  border-color: #43a;
+}
+
+.border-socialscience {
+  border-color: #1e6c93;
+}
