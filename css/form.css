@@ -1,0 +1,74 @@
+.form-input {
+  height: 30px !important;
+  width: 280px;
+  margin: 5px auto;
+  display: block;
+  font-size: 16px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+  border: solid 1px #000000;
+  border-radius: 3px;
+  box-shadow: #0000001a 0 0 5px;
+}
+
+.form-input-error {
+  border: solid 1px #ff0000;
+  box-shadow: #ff00001a 0 0 5px;
+}
+
+.invalid-feedback {
+  width: 320px;
+  margin: 2px auto;
+  font-weight: 500;
+  color: #f00;
+}
+
+.invalid-login {
+  background-color: #ff000022;
+  border-radius: 5px;
+  color: #f00;
+  width: 320px;
+  padding: 10px;
+  font-weight: 500;
+  margin: 4px auto;
+}
+
+.form-button {
+  height: 30px;
+  width: 160px;
+  margin: 5px auto;
+  display: block;
+  font-size: 16px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 600;
+  background-color: #0023b8;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  align-content: center;
+}
+
+.form-button:hover {
+  box-shadow: #0023b888 0 0 5px;
+}
+
+.form-button-r {
+  height: 30px;
+  width: 160px;
+  margin: 5px auto;
+  display: block;
+  font-size: 16px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 600;
+  background-color: #f00;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  align-content: center;
+}
+
+.form-button-r:hover {
+  box-shadow: #f008 0 0 5px;
+}
