@@ -22,6 +22,17 @@
   margin: 10px;
 }
 
+.root-info-container-flex {
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.root-info-text {
+  margin: 5px 10px;
+}
+
 .root-content-container,
 .root-genre-container {
   width: 90%;
