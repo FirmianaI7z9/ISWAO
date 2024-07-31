@@ -1,6 +1,23 @@
 <?php
-  /* LOCAL */
-  require_once "C:/Users/ftech/Documents/Github/ISWAO/php/default.php";
+  require_once "php/default.php";
+  require_once "php/db_connect.php";
+  require_once "php/functions.php";
+  session_start();
+
+  if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: /user/login.php");
+    exit;
+  }
+
+  $pre = $pdo->prepare("SELECT * FROM users WHERE id=:i;");
+  $params = array(":i" => $_SESSION['id']);
+  $pre->execute($params);
+  $user_data = $pre->fetch();
+
+  $pre = $pdo->prepare("SELECT * FROM editorials INNER JOIN problems ON editorials.problem_id = problems.problem_id WHERE user=:i;");
+  $params = array(":i" => $_SESSION['id']);
+  $pre->execute($params);
+  $editorials = $pre->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +41,7 @@
   <title>ホーム | 学術オリンピック非公式まとめサイト</title>
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/form.css">
   <link rel="stylesheet" href="/css/editorial.css">
   <link rel="stylesheet" href="/css/past.css">
   <script src=""></script>
@@ -33,21 +51,21 @@
   <?php echo default_header(); ?>
   <h2 class="h2">My Page</h2>
   <div class="basic-container">
-    <p class="username-large" style="color:#0078b8;">Firmiana</p>
-    <p class="user-belongs">Tokushima Municipal High School (The University of Tokyo), 運営</p>
+    <p class="username-large" style="color:#0078b8;"><?php echo $user_data['username'];?></p>
+    <p class="user-belongs"><?php echo is_empty_str($user_data['affiliation'], '所属未設定');?>, <?php echo implode(',', json_decode($user_data['titles'])); ?></p>
     <hr>
     <div class="user-profile-container">
       <div class="user-profile-item">
-        <h3 class="user-profile-item-title">Basic Data</h3>
+        <h3 class="user-profile-item-title">Profile</h3>
         <table class="user-profile-item-table">
           <tbody>
             <tr>
               <th>誕生年</th>
-              <td>2005</td>
+              <td><?php echo is_empty_str(strval($user_data['year']), '未設定');?></td>
             </tr>
             <tr>
               <th>参加大会数</th>
-              <td>11 (19)</td>
+              <td>11 (合計 19)</td>
             </tr>
             <tr>
               <th>参加経験</th>
@@ -57,11 +75,11 @@
             </tr>
             <tr>
               <th>解説作成数</th>
-              <td>0</td>
+              <td><?php echo count($editorials);?></td>
             </tr>
             <tr>
-              <th>Twitter</th>
-              <td>@FirmianaSim4104</td>
+              <th>ひとこと</th>
+              <td><?php echo $user_data['introduction']; ?></td>
             </tr>
           </tbody>
         </table>
@@ -71,8 +89,22 @@
   <div class="basic-container">
     <div class="user-profile-container">
       <div class="user-profile-item">
+        <h3 class="user-profile-item-title">Settings / Logout</h3>
+        <button class="form-button" type="button" onclick="location.href='/settings.php'">設定</button>
+        <button class="form-button-r" type="button" onclick="location.href='/php/lgot.php'">ログアウト</button>
+      </div>
+    </div>
+  </div>
+  <div class="basic-container">
+    <div class="user-profile-container">
+      <div class="user-profile-item">
         <h3 class="user-profile-item-title">User Editorials</h3>
         <div class="editorial-link-container">
+          <?php
+            foreach ($editorials as $i) {
+              
+            }
+          ?>
           <div class="editorial-link">
             <a href=""></a>
             <p class="editorial-link-title">JMO2024yo-P1</p>
