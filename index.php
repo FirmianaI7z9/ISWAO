@@ -1,6 +1,18 @@
 <?php
-  /* LOCAL */
-  require_once "C:/Users/ftech/Documents/Github/ISWAO/php/default.php";
+  require_once "php/default.php";
+  require_once "php/db_connect.php";
+  require_once "php/functions.php";
+  session_start();
+
+  $now = new DateTime();
+  $week = new DateTime();
+  $week->modify("-1 week");
+  $week->modify("+1 day");
+
+  $pre = $pdo->prepare("SELECT * FROM information WHERE created_at >= :n ORDER BY created_at DESC;");
+  $params = array(":n" => $week->format("Y-m-d 00:00:00"));
+  $pre->execute($params);
+  $information = $pre->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +36,8 @@
   <title>ホーム | 学術オリンピック非公式まとめサイト</title>
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/information.css">
+  <link rel="stylesheet" href="/css/schedule.css">
   <link rel="stylesheet" href="/css/root_index.css">
   <link rel="stylesheet" href="/css/past.css">
   <script src=""></script>
@@ -40,17 +54,71 @@
   <h2 class="h2">Information</h2>
 
   <div class="root-info-container">
-    <h3 class="root-info-container-title">本日 (7月7日) の予定</h3>
-    <div class="root-info-container-main">
-      <p>本日予定されているイベントはありません。</p>
-      <p>明日以降のイベントは「スケジュール」へ。</p>
+    <h3 class="root-info-container-title">本日 (<?php echo $now->format("m月d日")?>) の予定</h3>
+    <div class="root-info-container-flex">
+      <div class="schedule-item border-mathematics">
+        <div class="schedule-left-container background-mathematics color-black">
+          <p class="schedule-left-text">7/14<br><span class="schedule-arrow"></span><br>7/22</p>
+        </div>
+        <div class="schedule-right-container">
+          <p class="schedule-right-tags"><span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-mathematics color-black">IMO</span>2024</span></p>
+          <p class="schedule-right-text" style="width:100%;transform:scalex(1.00);">第65回国際数学オリンピック</p>
+        </div>
+      </div>
+      <div class="schedule-item border-informatics">
+        <div class="schedule-left-container background-informatics color-white">
+          <p class="schedule-left-text">9/14<br>14:00-15:20</p>
+        </div>
+        <div class="schedule-right-container">
+          <p class="schedule-right-tags"><span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-informatics color-white">JOI</span>2025</span><span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-informatics color-white">JOIG</span>2025</span></p>
+          <p class="schedule-right-text" style="width:108%;transform:scalex(0.96);">第24回日本情報オリンピック 一次予選第1回</p>
+        </div>
+      </div>
+      <div class="schedule-item border-informatics">
+        <div class="schedule-left-container background-informatics color-white">
+          <p class="schedule-left-text">9/14<br>14:00-15:20</p>
+        </div>
+        <div class="schedule-right-container">
+          <p class="schedule-right-tags"><span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-informatics color-white">JOI</span>2025</span><span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-informatics color-white">JOIG</span>2025</span></p>
+          <p class="schedule-right-text" style="width:108%;transform:scalex(0.96);">第24回日本情報オリンピック 一次予選第1回</p>
+        </div>
+      </div>
+      <div class="border-earthscience" style="display:flex;width:calc((100% - 30px) / 3);height:70px;border-radius:3px;position:relative;border-style:solid;border-width:2px;box-sizing:border-box;">
+        <div class="background-earthscience color-black" style="height:100%;width:70px;font-family:'Roboto Condensed','Noto Sans JP',sans-serif;font-weight:500;padding:3px;box-sizing:border-box;">
+          <p style="margin:0;height:100%;width:100%;text-align:center;align-content:center;line-height:18px;">2025年<br>1/26<br>14:00-</p>
+        </div>
+        <div class="" style="height:100%;width:calc(100% - 70px);padding:5px 7px;">
+          <p style="margin:0 0 3px 0;"><span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-earthscience color-black">JESO</span>2025</span></p>
+          <p style="margin:0;font-size:18px;font-weight:600;">第17回日本地学オリンピック 二次予選</p>
+        </div>
+      </div>
+      <?php
+
+      ?>
     </div>
+    <p class="root-info-text">明日以降のイベントは「スケジュール」へ。</p>
   </div>
   <div class="root-info-container">
-    <h3 class="root-info-container-title">新着情報 (7月1日～7月7日)</h3>
+    <h3 class="root-info-container-title">新着情報 (<?php echo $week->format("m月d日")?>～<?php echo $now->format("m月d日")?>)</h3>
     <div class="root-info-container-main">
-      <p>直近7日の新着情報はありません。</p>
-      <p>より過去のお知らせは「お知らせ」へ。</p>
+      <?php
+        function format_genre($item) {
+          return '<span class="tag background-'.genre2text($item->type).' color-'.genre2textcolor($item->type).'">'.$item->text.'</span>';
+        }
+        function format_info($item) {
+          $genres = json_decode($item['genre']);
+          $genretags = implode('', array_map('format_genre', $genres));
+          $str = '<div class="information-item"><p class="information-item-datetime">'.format_time($item['created_at']).'</p><a class="information-item-title"'.($item['link'] == 1 ? ' href="'.$item['linktext'].'"' : '').($item['is_external_site'] == 1 ? ' target="_blank" rel="noopener noreferrer"' : '').'>'.$item['title'].'</a><p class="information-item-tags">'.$genretags.'</p></div>';
+          return $str;
+        }
+        if (count($information) == 0) {
+          echo '<p>直近7日の新着情報はありません。</p>';
+        }
+        else {
+          echo implode('', array_map('format_info', $information));
+        }
+      ?>
+      <p>より過去のお知らせは「<a href="info.php">お知らせ</a>」へ。</p>
     </div>
   </div>
   <div class="root-info-container">
@@ -66,9 +134,9 @@
     </div>
   </div>
   <div class="root-info-container">
-    <h3 class="root-info-container-title">ウェブサイト更新情報 (6月8日～7月7日)</h3>
+    <h3 class="root-info-container-title">ウェブサイト更新情報 (<?php echo $week->format("m月d日")?>～<?php echo $now->format("m月d日")?>)</h3>
     <div class="root-info-container-main">
-      <p>直近30日の更新情報はありません。</p>
+      <p>直近7日の更新情報はありません。</p>
       <p>より過去の更新情報は「ウェブサイト更新情報」へ。</p>
     </div>
   </div>

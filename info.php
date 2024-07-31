@@ -1,6 +1,12 @@
 <?php
-  /* LOCAL */
-  require_once "C:/Users/ftech/Documents/Github/ISWAO/php/default.php";
+  require_once "php/default.php";
+  require_once "php/db_connect.php";
+  require_once "php/functions.php";
+  session_start();
+
+  $pre = $pdo->prepare("SELECT * FROM information ORDER BY created_at DESC;");
+  $pre->execute();
+  $information = $pre->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -34,16 +40,23 @@
   <h2 class="h2">Information</h2>
 
   <div class="basic-container">
-    <div class="information-item">
-      <p class="information-item-datetime">2222年22月22日 22:22</p>
-      <a class="information-item-title" href="">IBO2024 で日本代表選手全員が銀メダル🥈を獲得</a>
-      <p class="information-item-tags"><span class="tag background-biology color-white">IBO</span></p>
-    </div>
-    <div class="information-item">
-      <p class="information-item-datetime">2222年22月22日 22:22</p>
-      <a class="information-item-title" href="">IBO2024 で日本代表選手全員が銀メダル🥈を獲得</a>
-      <p class="information-item-tags"><span class="tag background-biology color-white">IBO</span></p>
-    </div>
+    <?php
+      function format_genre($item) {
+        return '<span class="tag background-'.genre2text($item->type).' color-'.genre2textcolor($item->type).'">'.$item->text.'</span>';
+      }
+      function format_info($item) {
+        $genres = json_decode($item['genre']);
+        $genretags = implode('', array_map('format_genre', $genres));
+        $str = '<div class="information-item"><p class="information-item-datetime">'.format_time($item['created_at']).'</p><a class="information-item-title"'.($item['link'] == 1 ? ' href="'.$item['linktext'].'"' : '').($item['is_external_site'] == 1 ? ' target="_blank" rel="noopener noreferrer"' : '').'>'.$item['title'].'</a><p class="information-item-tags">'.$genretags.'</p></div>';
+        return $str;
+      }
+      if (count($information) == 0) {
+        echo '<p>お知らせはありません。</p>';
+      }
+      else {
+        echo implode('', array_map('format_info', $information));
+      }
+    ?>
   </div>
 
   <div class="information-pagebutton-container">
