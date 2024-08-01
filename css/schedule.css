@@ -1,0 +1,88 @@
+.schedule-item {
+  display: flex;
+  height: 70px;
+  border-radius: 3px;
+  position: relative;
+  border-style: solid;
+  border-width: 2px;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+@media only screen and (min-width:1200px) {
+  .schedule-item {
+    width: calc((100% - 10px) / 3);
+  }
+}
+@media only screen and (max-width:1200px) {
+  .schedule-item {
+    width: calc((100% - 5px) / 2);
+  }
+}
+@media only screen and (max-width:800px) {
+  .schedule-item {
+    width: 100%;
+  }
+}
+
+.schedule-left-container {
+  height: 100%;
+  width: 70px;
+  font-family: 'Roboto Condensed', 'Noto Sans JP', sans-serif;
+  padding: 3px;
+  box-sizing: border-box;
+}
+
+.schedule-left-text {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  align-content: center;
+  line-height: 18px;
+}
+
+.schedule-right-container {
+  height: 100%;
+  width: calc(100% - 70px);
+  padding: 5px 7px;
+}
+
+.schedule-right-tags {
+  margin: 0 0 3px 0;
+}
+
+.schedule-right-text {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  transform-origin: top left;
+}
+
+.schedule-arrow, .schedule-arrow-right {
+  font-size: 13px;
+}
+
+.schedule-arrow::before {
+  content: "▼";
+}
+
+.schedule-arrow-right::before {
+  content: "▶";
+}
+
+.schedule-date {
+  margin: 5px 0;
+  width: 100%;
+  font-size: 24px;
+  font-family: 'Roboto Condensed', 'Noto Sans JP', sans-serif;
+  color: #0055dd;
+}
+
+
+.schedule-year {
+  margin-right: 5px;
+  font-size: 20px;
+  font-family: 'Roboto Condensed', 'Noto Sans JP', sans-serif;
+  color: #000000;
+}
