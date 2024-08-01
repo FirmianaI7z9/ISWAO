@@ -138,3 +138,104 @@ function genre2textcolor($genre) {
     return 'white';
   }
 }
+
+function kind2color($kind) {
+  switch ($kind) {
+    case 'yo':
+      return 'gray';
+    case 'ho':
+      return 'darkgray';
+    case 'ko':
+      return 'black';
+    default:
+      return 'gray';
+  }
+}
+
+function format_genre($item) {
+  if ($item->kind == '') {
+    return '<span class="tag background-'.genre2text($item->type).' color-'.genre2textcolor($item->type).'">'.$item->name.'</span>';
+  }
+  else {
+    return '<span class="additional-tag-wrapper background-'.kind2color($item->kind).' color-white"><span class="additional-tag-innertag background-'.genre2text($item->type).' color-'.genre2textcolor($item->type).'">'.$item->name.'</span>'.$item->kind.'</span>';
+  }
+}
+
+function format_schedule($item) {
+  $genre = genre2text($item['genre']);
+  $color = genre2textcolor($item['genre']);
+  $tag = json_decode($item['tags']);
+  $tags = implode('', array_map('format_genre', $tag));
+  $now = new DateTime();
+  $start_at = new DateTime($item['start_at']);
+  $finish_at = new DateTime($item['finish_at']);
+  $date = '';
+  if ($now->format('Y') != $start_at->format('Y')) {
+    switch ($item['type']) {
+      case 0:
+        $date = $start_at->format('Y年<b\r>m月');
+        break;
+      case 1:
+        $date = $start_at->format('Y年<b\r>m/d');
+        break;
+      case 2:
+        $date = $start_at->format('Y年<b\r>m/d').'<br><span class="schedule-arrow-right"></span>'.$finish_at->format('m/d');
+        break;
+      case 3:
+      case 5:
+        $date = $start_at->format('Y年<b\r>m/d<b\r>H:i-');
+        break;
+      case 4:
+        $date = $finish_at->format('Y年<b\r>m/d<b\r>-H:i');
+        break;
+      default:
+        break;
+    }
+  }
+  else {
+    switch ($item['display_type']) {
+      case 0:
+        $date = $start_at->format('m月');
+        break;
+      case 1:
+        $date = $start_at->format('m/d');
+        break;
+      case 2:
+        $date = $start_at->format('m/d').'<br><span class="schedule-arrow"></span><br>'.$finish_at->format('m/d');
+        break;
+      case 3:
+        $date = $start_at->format('m/d<b\r>H:i-');
+        break;
+      case 4:
+        $date = $finish_at->format('m/d<b\r>-H:i');
+        break;
+      case 5:
+        $date = $start_at->format('m/d<b\r>H:i').'-<br>'.$finish_at->format('H:i');
+        break;
+      default:
+        break;
+    }
+  }
+  $str = '['.$start_at->format('Ym').']<div class="schedule-item border-'.$genre.'"'.(($item['event_type'] == 2 || $now > $finish_at) ? ' style="opacity: 0.5;"' : '').'><div class="schedule-left-container background-'.$genre.' color-'.$color.'"><p class="schedule-left-text">'.$date.'</p></div><div class="schedule-right-container"><p class="schedule-right-tags">'.$tags.'</p><p class="schedule-right-text">'.$item['title'].'</p></div></div>';
+  return $str;
+}
+
+function format_schedule_with_month($str, $is_encode) {
+  if ($is_encode) {
+    $patterns = array();
+    for ($i = 0; $i < 12 * 10; $i++) {
+      $patterns[$i] = '/\[('.strval(2020 + floor($i / 12)).')('.sprintf('%02d', $i % 12 + 1).')\]/';
+    }
+    return preg_replace('/\[[0-9]{6}\]/', '', preg_replace($patterns, '<p class="schedule-date"><span class="schedule-year">$1.</span>$2</p>', $str, 1));
+  }
+  else {
+    return preg_replace('/\[[0-9]{6}\]/', '', $str);
+  }
+}
+
+function format_info($item) {
+  $tag = json_decode($item['tags']);
+  $tags = implode('', array_map('format_genre', $tag));
+  $str = '<div class="information-item"><p class="information-item-datetime">'.format_time($item['created_at']).'</p><a class="information-item-title"'.($item['link'] == 1 ? ' href="'.$item['linktext'].'"' : '').($item['is_external_site'] == 1 ? ' target="_blank" rel="noopener noreferrer"' : '').'>'.$item['title'].'</a><p class="information-item-tags">'.$tags.'</p></div>';
+  return $str;
+}
