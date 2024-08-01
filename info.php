@@ -7,6 +7,10 @@
   $pre = $pdo->prepare("SELECT * FROM information ORDER BY created_at DESC;");
   $pre->execute();
   $information = $pre->fetchAll();
+
+  $pre = $pdo->prepare("SELECT COUNT(*) AS count FROM information;");
+  $pre->execute();
+  $res = $pre->fetch();
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +36,7 @@
   <link rel="stylesheet" href="/css/colors.css">
   <link rel="stylesheet" href="/css/information.css">
   <link rel="stylesheet" href="/css/past.css">
-  <script src=""></script>
+  <script src="js/root_information.js"></script>
 </head>
 
 <body>
@@ -40,31 +44,15 @@
   <h2 class="h2">Information</h2>
 
   <div class="basic-container">
-    <?php
-      function format_genre($item) {
-        return '<span class="tag background-'.genre2text($item->type).' color-'.genre2textcolor($item->type).'">'.$item->text.'</span>';
-      }
-      function format_info($item) {
-        $genres = json_decode($item['genre']);
-        $genretags = implode('', array_map('format_genre', $genres));
-        $str = '<div class="information-item"><p class="information-item-datetime">'.format_time($item['created_at']).'</p><a class="information-item-title"'.($item['link'] == 1 ? ' href="'.$item['linktext'].'"' : '').($item['is_external_site'] == 1 ? ' target="_blank" rel="noopener noreferrer"' : '').'>'.$item['title'].'</a><p class="information-item-tags">'.$genretags.'</p></div>';
-        return $str;
-      }
-      if (count($information) == 0) {
-        echo '<p>お知らせはありません。</p>';
-      }
-      else {
-        echo implode('', array_map('format_info', $information));
-      }
-    ?>
+    <?php echo implode('', array_map('format_info', $information)); ?>
   </div>
 
   <div class="information-pagebutton-container">
-    <button type="submit" class="information-pagebutton">1</button>
-    <button type="submit" class="information-pagebutton">2</button>
-    <button type="submit" class="information-pagebutton-now">3</button>
-    <button type="submit" class="information-pagebutton">4</button>
-    <button type="submit" class="information-pagebutton">5</button>
+    <button type="submit" class="pagebutton information-pagebutton" onclick="javascript: movepage(-2);" disabled>0</button>
+    <button type="submit" class="pagebutton information-pagebutton" onclick="javascript: movepage(-1);" disabled>0</button>
+    <button type="submit" class="pagebutton information-pagebutton-now">1</button>
+    <button type="submit" class="pagebutton information-pagebutton" onclick="javascript: movepage(1);">2</button>
+    <button type="submit" class="pagebutton information-pagebutton" onclick="javascript: movepage(2);">3</button>
   </div>
 
   <?php echo default_footer(); ?>
