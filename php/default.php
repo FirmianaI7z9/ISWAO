@@ -242,8 +242,8 @@ function format_info($item) {
 
 function format_editorial($item) {
   $tags = implode('', array_map('format_genre', json_decode($item['tags'])));
-  $str = '<div class="editorial-link"><a href="/contests/common/editorial.php?id='.strval($item['id']).'"></a><p class="editorial-link-title">'.$item['name'].'</p><p class="editorial-link-data">'.$tags.' by <a class="username" style="color:#0078b8">Firmiana</a> ('.get_editorial_status($item['status']).')</p>
-          </div>';
+  $str = '<div class="editorial-link"><a href="/contests/common/editorial.php?id='.strval($item['id']).'"></a><p class="editorial-link-title">'.($item['problem_name']).'</p><p class="editorial-link-data">'.$tags.' by <a class="username" style="color:#'.$item['color'].'">'.$item['username'].'</a> ('.get_editorial_status($item['status']).')</p></div>';
+  return $str;
 }
 
 function get_editorial_status($status) {
