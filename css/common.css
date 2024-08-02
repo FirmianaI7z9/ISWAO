@@ -30,31 +30,44 @@ body>hr {
 .tag {
   margin: 0 2px;
   padding: 1px 7px;
+  height: calc(1em * 1.25);
   border-radius: 2px;
   font-weight: 500;
   font-size: 95%;
   font-family: 'Roboto Condensed', 'Noto Sans JP', '';
+  align-content: center;
+  display: inline-block;
+  box-sizing: border-box;
+  line-height: 1px;
 }
 
 /*
   additional-tag 種類想定
-  1. -yo(予選出場≒参加) -ho(本選出場) -Q(代表選抜参加)
+  1. -yo(予選出場≒参加) -ho(本選出場) -ko(代表選抜参加)
   2. 年次明示
-  3. 参加回数明示
 */
 .additional-tag-wrapper {
   margin: 0 2px;
-  padding: 1px 7px 1px 0;
+  padding: 0 7px 0 0;
+  height: calc(1em * 1.25);
   border-radius: 2px;
   font-weight: 500;
   font-size: 95%;
   font-family: 'Roboto Condensed', 'Noto Sans JP', '';
+  display: inline-block;
+  box-sizing: border-box;
+  line-height: 1px;
 }
 
 .additional-tag-innertag {
   margin: 0 3px 0 0;
-  padding: 1px 3px 1px 7px;
+  padding: 0 3px 0 7px;
+  height: 100%;
   border-radius: 2px;
+  align-content: center;
+  display: inline-block;
+  box-sizing: border-box;
+  line-height: 1px;
 }
 
 .basic-container {
