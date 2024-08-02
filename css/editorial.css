@@ -7,9 +7,10 @@
   border: solid 1px #0004;
   border-radius: 3px;
   box-shadow: #0001 0 0 10px;
+  overflow: hidden;
 }
 
-.editorial-link a {
+.editorial-link a:not(.username) {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -17,7 +18,7 @@
   left: 0;
 }
 
-.editorial-link a:hover {
+.editorial-link a:not(.username):hover {
   background-color: #0001;
 }
 
@@ -26,6 +27,7 @@
   font-size: 18px;
   font-weight: 500;
   font-family: 'Roboto Condensed', 'Noto Sans JP', sans-serif;
+  white-space: nowrap;
 }
 
 .editorial-link-data {
