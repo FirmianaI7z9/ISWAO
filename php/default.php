@@ -216,7 +216,7 @@ function format_schedule($item) {
         break;
     }
   }
-  $str = '['.$start_at->format('Ym').']<div class="schedule-item border-'.$genre.'"'.(($item['event_type'] == 2 || $now > $finish_at) ? ' style="opacity: 0.5;"' : '').'><div class="schedule-left-container background-'.$genre.' color-'.$color.'"><p class="schedule-left-text">'.$date.'</p></div><div class="schedule-right-container"><p class="schedule-right-tags">'.$tags.'</p><p class="schedule-right-text">'.$item['title'].'</p></div></div>';
+  $str = '['.$start_at->format('Ym').']<div class="schedule-item border-'.$genre.'"'.(($item['event_type'] == 2 || $now > $finish_at) ? ' style="opacity: 0.5;"' : '').'>'.($item['is_link'] == 1 ? '<a href="'.($item['url'] == '' ? '' : $item['url']).'" target="_blank" rel="noopener noreferrer">' : '').'</a><div class="schedule-left-container background-'.$genre.' color-'.$color.'"><p class="schedule-left-text">'.$date.'</p></div><div class="schedule-right-container"><p class="schedule-right-tags">'.$tags.'</p><p class="schedule-right-text">'.$item['title'].'</p></div></div>';
   return $str;
 }
 
@@ -238,4 +238,25 @@ function format_info($item) {
   $tags = implode('', array_map('format_genre', $tag));
   $str = '<div class="information-item"><p class="information-item-datetime">'.format_time($item['created_at']).'</p><a class="information-item-title"'.($item['link'] == 1 ? ' href="'.$item['linktext'].'"' : '').($item['is_external_site'] == 1 ? ' target="_blank" rel="noopener noreferrer"' : '').'>'.$item['title'].'</a><p class="information-item-tags">'.$tags.'</p></div>';
   return $str;
+}
+
+function format_editorial($item) {
+  $tags = implode('', array_map('format_genre', json_decode($item['tags'])));
+  $str = '<div class="editorial-link"><a href="/contests/common/editorial.php?id='.strval($item['id']).'"></a><p class="editorial-link-title">'.$item['name'].'</p><p class="editorial-link-data">'.$tags.' by <a class="username" style="color:#0078b8">Firmiana</a> ('.get_editorial_status($item['status']).')</p>
+          </div>';
+}
+
+function get_editorial_status($status) {
+  switch ($status) {
+    case 0:
+      return '投稿済み';
+    case 1:
+      return '一時保存中';
+    case 2:
+      return '非公開';
+    case 3:
+      return '審査中';
+    default:
+      return '?'; 
+  }
 }
