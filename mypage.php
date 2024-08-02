@@ -65,13 +65,11 @@
             </tr>
             <tr>
               <th>参加大会数</th>
-              <td>11 (合計 19)</td>
+              <td><?php echo count(json_decode($user_data['joined_contest'])); ?> 種</td>
             </tr>
             <tr>
               <th>参加経験</th>
-              <td>
-                <span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-mathematics color-black">JMO</span>yo</span><span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-mathematics color-black">JJMO</span>yo</span><span class="additional-tag-wrapper background-darkgray color-white"><span class="additional-tag-innertag background-physics color-white">JPhO</span>ho</span><span class="additional-tag-wrapper background-darkgray color-white"><span class="additional-tag-innertag background-chemistry color-black">JChO</span>ho</span><span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-earthscience color-black">JESO</span>yo</span><span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-informatics color-white">JOI</span>yo</span><span class="additional-tag-wrapper background-darkgray color-white"><span class="additional-tag-innertag background-kako color-white">科甲</span>ho</span><span class="additional-tag-wrapper background-darkgray color-white"><span class="additional-tag-innertag background-kako color-white">科甲Jr</span>ho</span><span class="tag background-linguistics color-black">JOL</span><span class="tag background-linguistics color-black">Onling</span><span class="additional-tag-wrapper background-darkgray color-white"><span class="additional-tag-innertag background-astronomy color-white">JAO</span>ho</span>
-              </td>
+              <td><?php echo implode('', array_map('format_genre', json_decode($user_data['joined_contest']))); ?></td>
             </tr>
             <tr>
               <th>解説作成数</th>
