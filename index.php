@@ -60,7 +60,7 @@
   <link rel="stylesheet" href="/css/schedule.css">
   <link rel="stylesheet" href="/css/root_index.css">
   <link rel="stylesheet" href="/css/past.css">
-  <script src=""></script>
+  <script src="js/schedule_resize.js"></script>
 </head>
 
 <body>
