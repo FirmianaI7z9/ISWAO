@@ -118,55 +118,55 @@
 
   <div class="root-content-container">
     <div class="root-content-item">
-      <a href="info.html"></a>
+      <a href="info.php"></a>
       <h3 class="root-content-item-title">最新情報・お知らせ</h3>
       <p class="root-content-item-text">学術オリンピックに関する最新情報や、運営からのお知らせなどをまとめています。<br>一部の情報については詳説します。</p>
     </div>
     
     <div class="root-content-item">
-      <a href="info.html"></a>
+      <a href="schedule.php"></a>
       <h3 class="root-content-item-title">スケジュール</h3>
       <p class="root-content-item-text">学術オリンピックの大会の今後の予定を掲載しています。<br>大会内のスケジュールも掲載しているものもあります。</p>
     </div>
     
     <div class="root-content-item">
-      <a href="info.html"></a>
+      <a href="calendar_m.php"></a>
       <h3 class="root-content-item-title">月別カレンダー</h3>
       <p class="root-content-item-text">学術オリンピックの大会の今後の予定をカレンダー形式で掲載しています。</p>
     </div>
     
     <div class="root-content-item">
-      <a href="info.html"></a>
+      <a href="calendar_l.php"></a>
       <h3 class="root-content-item-title">リスト式カレンダー</h3>
       <p class="root-content-item-text">学術オリンピックの大会の今後の予定をリスト形式で掲載しています。</p>
     </div>
     
     <div class="root-content-item">
-      <a href="info.html"></a>
+      <a href="contests.php"></a>
       <h3 class="root-content-item-title">コンテスト一覧</h3>
       <p class="root-content-item-text">当サイトで扱っている大会一覧を掲載しています。</p>
     </div>
     
     <div class="root-content-item">
-      <a href="info.html"></a>
+      <a href="d_booking.php"></a>
       <h3 class="root-content-item-title">予定被り情報</h3>
       <p class="root-content-item-text">大会毎の予定被り情報をまとめています。</p>
     </div>
     
     <div class="root-content-item">
-      <a href="info.html"></a>
+      <a href="useful_links.php"></a>
       <h3 class="root-content-item-title">便利リンク集</h3>
       <p class="root-content-item-text">役に立ちそうなウェブサイトへの道標の集合体です。</p>
     </div>
     
     <div class="root-content-item">
-      <a href="info.html"></a>
+      <a href="contact.php"></a>
       <h3 class="root-content-item-title">問い合わせ</h3>
       <p class="root-content-item-text">不具合報告や要望はここから。</p>
     </div>
     
     <div class="root-content-item">
-      <a href="info.html"></a>
+      <a href="about.php"></a>
       <h3 class="root-content-item-title">ABOUT</h3>
       <p class="root-content-item-text">当サイトに関する情報を掲載しています。</p>
     </div>
