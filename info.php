@@ -7,10 +7,6 @@
   $pre = $pdo->prepare("SELECT * FROM information ORDER BY created_at DESC;");
   $pre->execute();
   $information = $pre->fetchAll();
-
-  $pre = $pdo->prepare("SELECT COUNT(*) AS count FROM information;");
-  $pre->execute();
-  $res = $pre->fetch();
 ?>
 
 <!DOCTYPE html>
@@ -48,11 +44,11 @@
   </div>
 
   <div class="information-pagebutton-container">
-    <button type="submit" class="pagebutton information-pagebutton" onclick="javascript: movepage(-2);" disabled>0</button>
-    <button type="submit" class="pagebutton information-pagebutton" onclick="javascript: movepage(-1);" disabled>0</button>
-    <button type="submit" class="pagebutton information-pagebutton-now">1</button>
-    <button type="submit" class="pagebutton information-pagebutton" onclick="javascript: movepage(1);">2</button>
-    <button type="submit" class="pagebutton information-pagebutton" onclick="javascript: movepage(2);">3</button>
+    <button type="submit" class="pagebutton information-pagebutton" onclick="javascript: movepage(-2);" disabled></button>
+    <button type="submit" class="pagebutton information-pagebutton" onclick="javascript: movepage(-1);" disabled></button>
+    <button type="submit" class="pagebutton information-pagebutton-now"></button>
+    <button type="submit" class="pagebutton information-pagebutton" onclick="javascript: movepage(1);"></button>
+    <button type="submit" class="pagebutton information-pagebutton" onclick="javascript: movepage(2);"></button>
   </div>
 
   <?php echo default_footer(); ?>
