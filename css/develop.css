@@ -1,0 +1,14 @@
+.develop-container {
+  margin: 5px;
+  padding: 5px;
+  width: calc(100% - 10px);
+  box-sizing: border-box;
+  border-radius: 2px;
+  border: solid 1px #aaaaaa;
+}
+
+.develop-item-text {
+  margin: 2px;
+  font-size: 14px;
+  color: #888888;
+}
