@@ -14,7 +14,7 @@
   $pre->execute($params);
   $user_data = $pre->fetch();
 
-  $pre = $pdo->prepare("SELECT * FROM editorials INNER JOIN problems ON editorials.problem_id = problems.problem_id WHERE user=:i;");
+  $pre = $pdo->prepare("SELECT editorials.id,tags,type,user_id,reference,reference_url,status,problems.problem_name,users.username,users.color FROM editorials INNER JOIN problems ON editorials.problem_id = problems.problem_id INNER JOIN users ON users.id = editorials.user_id WHERE user_id=:i;");
   $params = array(":i" => $_SESSION['id']);
   $pre->execute($params);
   $editorials = $pre->fetchAll();
@@ -51,7 +51,7 @@
   <?php echo default_header(); ?>
   <h2 class="h2">My Page</h2>
   <div class="basic-container">
-    <p class="username-large" style="color:#0078b8;"><?php echo $user_data['username'];?></p>
+    <p class="username-large" style="color:#<?php echo $user_data['color']; ?>;"><?php echo $user_data['username'];?></p>
     <p class="user-belongs"><?php echo is_empty_str($user_data['affiliation'], '所属未設定');?>, <?php echo implode(',', json_decode($user_data['titles'])); ?></p>
     <hr>
     <div class="user-profile-container">
@@ -99,28 +99,14 @@
         <h3 class="user-profile-item-title">User Editorials</h3>
         <div class="editorial-link-container">
           <?php
-            foreach ($editorials as $i) {
-              
+            if (count($editorials) > 0) {
+              echo implode('', array_map('format_editorial', $editorials));
+            }
+            else {
+              echo '<p>まだ解説を作成していません。解説の作成は、各問題のページから行うことができます。</p>';
             }
           ?>
-          <div class="editorial-link">
-            <a href=""></a>
-            <p class="editorial-link-title">JMO2024yo-P1</p>
-            <p class="editorial-link-data"><span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-mathematics color-black">JMO</span>yo</span> by <span class="username" style="color:#0078b8">Firmiana</span> (確認中)</p>
-          </div>
-          <div class="editorial-link">
-            <a href=""></a>
-            <p class="editorial-link-title">JMO2024yo-P2</p>
-            <p class="editorial-link-data"><span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-mathematics color-black">JMO</span>yo</span> by <span class="username" style="color:#0078b8">Firmiana</span> (未公開)</p>
-          </div>
-          <div class="editorial-link">
-            <a href=""></a>
-            <p class="editorial-link-title">JMO2024yo-P3</p>
-            <p class="editorial-link-data"><span class="additional-tag-wrapper background-gray color-white"><span class="additional-tag-innertag background-mathematics color-black">JMO</span>yo</span> by <span class="username" style="color:#0078b8">Firmiana</span> (未公開)</p>
-          </div>
         </div>
-        
-        <p>まだ解説を作成していません。解説の作成は、各問題のページから行うことができます。</p>
       </div>
     </div>
   </div>
