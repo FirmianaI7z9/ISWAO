@@ -98,26 +98,47 @@
           echo implode('', array_map('format_info', $information));
         }
       ?>
-      <p>より過去のお知らせは「<a href="info.php">お知らせ</a>」へ。</p>
     </div>
+    <p class="root-info-text">より過去のお知らせは「<a href="info.php">お知らせ</a>」へ。</p>
   </div>
   <div class="root-info-container">
     <h3 class="root-info-container-title">申し込み受付中の大会</h3>
     <div class="root-info-container-main">
-      <p>現在申し込みを行っている大会はありません。</p>
+      <?php
+        if (count($applications) == 0) {
+          echo '<p>現在申し込みを行っている大会はありません。</p>';
+        }
+        else {
+          echo format_schedule_with_month(implode('', array_map('format_schedule', $applications)), false);;
+        }
+      ?>
     </div>
   </div>
   <div class="root-info-container">
     <h3 class="root-info-container-title">大会LIVE配信情報</h3>
     <div class="root-info-container-main">
-      <p>現在LIVE配信を行っている・直近に予定している大会はありません。</p>
+      <?php
+        if (count($streams) == 0) {
+          echo '<p>現在LIVE配信を行っている・直近に予定している大会はありません。</p>';
+        }
+        else {
+          echo format_schedule_with_month(implode('', array_map('format_schedule', $streams)), false);;
+        }
+      ?>
     </div>
+    <p class="root-info-text">過去のライブ配信は「<a href="info.php">ライブ配信アーカイブ</a>」へ。</p>
   </div>
   <div class="root-info-container">
     <h3 class="root-info-container-title">ウェブサイト更新情報 (<?php echo $week->format("m月d日")?>～<?php echo $now->format("m月d日")?>)</h3>
     <div class="root-info-container-main">
-      <p>直近7日の更新情報はありません。</p>
-      <p>より過去の更新情報は「ウェブサイト更新情報」へ。</p>
+      <?php
+        if (count($dev_info) == 0) {
+          echo '<p>直近7日の更新情報はありません。</p>';
+        }
+        else {
+          echo implode('', array_map('format_info', $dev_info));
+        }
+      ?>
     </div>
   </div>
   <div class="root-info-container">
