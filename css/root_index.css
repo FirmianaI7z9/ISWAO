@@ -56,6 +56,27 @@
   overflow: hidden;
 }
 
+@media only screen and (min-width:1200px) {
+  .root-content-item,
+  .root-genre-item {
+    width: calc((100% - 20px) / 3);
+  }
+}
+
+@media only screen and (max-width:1200px) {
+  .root-content-item,
+  .root-genre-item {
+    width: calc((100% - 20px) / 2);
+  }
+}
+
+@media only screen and (max-width:800px) {
+  .root-content-item,
+  .root-genre-item {
+    width: calc(100% - 20px);
+  }
+}
+
 .root-content-item-title {
   width: 100%;
   margin: 0;
