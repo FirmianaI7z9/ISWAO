@@ -18,6 +18,21 @@
   $params = array(":n" => $week->format("Y-m-d 00:00:00"));
   $pre->execute($params);
   $information = $pre->fetchAll();
+
+  $pre = $pdo->prepare("SELECT * FROM applications WHERE start_at <= :n1 AND finish_at >= :n2 ORDER BY finish_at ASC;");
+  $params = array(":n1" => $now->format("Y-m-d H:i:s"), ":n2" => $now->format("Y-m-d H:i:s"));
+  $pre->execute($params);
+  $applications = $pre->fetchAll();
+
+  $pre = $pdo->prepare("SELECT * FROM streams WHERE finish_at >= :n ORDER BY start_at DESC;");
+  $params = array(":n" => $now->format("Y:m:d H:i:s"));
+  $pre->execute($params);
+  $streams = $pre->fetchAll();
+
+  $pre = $pdo->prepare("SELECT * FROM information WHERE created_at >= :n AND tags LIKE 'dev' ORDER BY created_at DESC;");
+  $params = array(":n" => $week->format("Y-m-d 00:00:00"));
+  $pre->execute($params);
+  $dev_info = $pre->fetchAll();
 ?>
 
 <!DOCTYPE html>
