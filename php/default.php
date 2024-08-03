@@ -130,7 +130,7 @@ function genre2text($genre) {
 }
 
 function genre2textcolor($genre) {
-  $blacks = ['ma', 'ch', 'ea', 'li', 'ge', 'pi'];
+  $blacks = ['ma', 'ka', 'ea', 'li', 'ge', 'pi'];
   if (in_array($genre, $blacks)) {
     return 'black';
   }
@@ -171,7 +171,7 @@ function format_schedule($item) {
   $finish_at = new DateTime($item['finish_at']);
   $date = '';
   if ($now->format('Y') != $start_at->format('Y')) {
-    switch ($item['type']) {
+    switch ($item['display_type']) {
       case 0:
         $date = $start_at->format('Y年<b\r>m月');
         break;
@@ -179,7 +179,12 @@ function format_schedule($item) {
         $date = $start_at->format('Y年<b\r>m/d');
         break;
       case 2:
-        $date = $start_at->format('Y年<b\r>m/d').'<br><span class="schedule-arrow-right"></span>'.$finish_at->format('m/d');
+        if ($start_at->format('m/d') == $finish_at->format('m/d')) {
+          $date = $start_at->format('Y年<b\r>m/d');
+        }
+        else {
+          $date = $start_at->format('Y年<b\r>m/d').'<br><span class="schedule-arrow-right"></span>'.$finish_at->format('m/d');
+        }
         break;
       case 3:
       case 5:
@@ -201,7 +206,12 @@ function format_schedule($item) {
         $date = $start_at->format('m/d');
         break;
       case 2:
-        $date = $start_at->format('m/d').'<br><span class="schedule-arrow"></span><br>'.$finish_at->format('m/d');
+        if ($start_at->format('m/d') == $finish_at->format('m/d')) {
+          $date = $start_at->format('m/d');
+        }
+        else {
+          $date = $start_at->format('m/d').'<br><span class="schedule-arrow"></span><br>'.$finish_at->format('m/d');
+        }
         break;
       case 3:
         $date = $start_at->format('m/d<b\r>H:i-');
@@ -216,7 +226,7 @@ function format_schedule($item) {
         break;
     }
   }
-  $str = '['.$start_at->format('Ym').']<div class="schedule-item border-'.$genre.'"'.(($item['event_type'] == 2 || $now > $finish_at) ? ' style="opacity: 0.5;"' : '').'>'.($item['is_link'] == 1 ? '<a href="'.($item['url'] == '' ? '' : $item['url']).'" target="_blank" rel="noopener noreferrer">' : '').'</a><div class="schedule-left-container background-'.$genre.' color-'.$color.'"><p class="schedule-left-text">'.$date.'</p></div><div class="schedule-right-container"><p class="schedule-right-tags">'.$tags.'</p><p class="schedule-right-text">'.$item['title'].'</p></div></div>';
+  $str = '['.$start_at->format('Ym').']<div class="schedule-item border-'.$genre.'"'.(($item['event_type'] == 2 || ($item['display_type'] >= 3 && $now > $finish_at)) ? ' style="opacity: 0.5;"' : '').'>'.($item['is_link'] == 1 ? '<a href="'.($item['url'] == '' ? '' : $item['url']).'" target="_blank" rel="noopener noreferrer">' : '').'</a><div class="schedule-left-container background-'.$genre.' color-'.$color.'"><p class="schedule-left-text">'.$date.'</p></div><div class="schedule-right-container"><p class="schedule-right-tags">'.$tags.'</p><p class="schedule-right-text">'.$item['title'].'</p></div></div>';
   return $str;
 }
 
@@ -236,7 +246,7 @@ function format_schedule_with_month($str, $is_encode) {
 function format_info($item) {
   $tag = json_decode($item['tags']);
   $tags = implode('', array_map('format_genre', $tag));
-  $str = '<div class="information-item"><p class="information-item-datetime">'.format_time($item['created_at']).'</p><a class="information-item-title"'.($item['link'] == 1 ? ' href="'.$item['linktext'].'"' : '').($item['is_external_site'] == 1 ? ' target="_blank" rel="noopener noreferrer"' : '').'>'.$item['title'].'</a><p class="information-item-tags">'.$tags.'</p></div>';
+  $str = '<div class="information-item"><p class="information-item-datetime">'.format_time($item['updated_at']).'</p><a class="information-item-title"'.($item['link'] == 1 ? ' href="'.$item['linktext'].'"' : '').($item['is_external_site'] == 1 ? ' target="_blank" rel="noopener noreferrer"' : '').'>'.$item['title'].'</a><p class="information-item-tags">'.$tags.'</p></div>';
   return $str;
 }
 
