@@ -16,12 +16,13 @@ function format_num($item) {
   }
 }
 
-$sql = '';
+$vals = [];
+$keys = implode(',', array_keys((array)($data->arg[0])));
 for ($i = 0; $i < count($data->arg); $i++) {
-  $keys = implode(',', array_keys((array)($data->arg[$i])));
   $values = implode(',', array_map('format_num', array_values((array)($data->arg[$i]))));
-  $sql .= 'INSERT INTO '.$data->table.' ('.$keys.') VALUES ('.$values.');';
+  $vals[] = '('.$values.')';
 }
+$sql = 'INSERT INTO '.$data->table.' ('.$keys.') VALUES '.implode(',', $vals).';';
 $pre = $pdo->prepare($sql);
 $pre->execute();
 echo json_decode($sql);
