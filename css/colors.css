@@ -16,11 +16,11 @@
 }
 
 .color-chemistry {
-  color: #ff0;
+  color: #d50000;
 }
 
 .color-biology {
-  color: #e60000;
+  color: #5b6f3a;
 }
 
 .color-earthscience {
@@ -32,7 +32,7 @@
 }
 
 .color-kako {
-  color: #9e0000;
+  color: #ee0;
 }
 
 .color-linguistics {
@@ -48,7 +48,7 @@
 }
 
 .color-philosophy {
-  color: #f2f2f2;
+  color: #dddddd;
 }
 
 .color-economics {
@@ -93,11 +93,11 @@
 }
 
 .background-chemistry {
-  background-color: #ff0;
+  background-color: #d50000;
 }
 
 .background-biology {
-  background-color: #e60000;
+  background-color: #5b6f3a;
 }
 
 .background-earthscience {
@@ -109,7 +109,7 @@
 }
 
 .background-kako {
-  background-color: #9e0000;
+  background-color: #ee0;
 }
 
 .background-linguistics {
@@ -125,7 +125,7 @@
 }
 
 .background-philosophy {
-  background-color: #f2f2f2;
+  background-color: #dddddd;
 }
 
 .background-economics {
@@ -154,11 +154,11 @@
 }
 
 .border-chemistry {
-  border-color: #ff0;
+  border-color: #d50000;
 }
 
 .border-biology {
-  border-color: #e60000;
+  border-color: #5b6f3a;
 }
 
 .border-earthscience {
@@ -170,7 +170,7 @@
 }
 
 .border-kako {
-  border-color: #9e0000;
+  border-color: #ee0;
 }
 
 .border-linguistics {
@@ -186,7 +186,7 @@
 }
 
 .border-philosophy {
-  border-color: #f2f2f2;
+  border-color: #dddddd;
 }
 
 .border-economics {
