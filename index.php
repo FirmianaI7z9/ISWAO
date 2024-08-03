@@ -103,7 +103,7 @@
   </div>
   <div class="root-info-container">
     <h3 class="root-info-container-title">申し込み受付中の大会</h3>
-    <div class="root-info-container-main">
+    <div class="root-info-container-flex">
       <?php
         if (count($applications) == 0) {
           echo '<p>現在申し込みを行っている大会はありません。</p>';
@@ -116,7 +116,7 @@
   </div>
   <div class="root-info-container">
     <h3 class="root-info-container-title">大会LIVE配信情報</h3>
-    <div class="root-info-container-main">
+    <div class="root-info-container-flex">
       <?php
         if (count($streams) == 0) {
           echo '<p>現在LIVE配信を行っている・直近に予定している大会はありません。</p>';
@@ -236,10 +236,10 @@
     </div>
 
     <div class="root-genre-item">
-      <h3 class="root-genre-item-title background-chemistry color-black">化学</h3>
+      <h3 class="root-genre-item-title background-chemistry color-white">化学</h3>
       <ul class="root-genre-item-list">
-        <li><span class="tag background-chemistry color-black">JChO</span>化学グランプリ</li>
-        <li><span class="tag background-chemistry color-black">IChO</span>国際化学オリンピック</li>
+        <li><span class="tag background-chemistry color-white">JChO</span>化学グランプリ</li>
+        <li><span class="tag background-chemistry color-white">IChO</span>国際化学オリンピック</li>
       </ul>
     </div>
 
@@ -272,11 +272,11 @@
     </div>
 
     <div class="root-genre-item">
-      <h3 class="root-genre-item-title background-kako color-white">科学の甲子園</h3>
+      <h3 class="root-genre-item-title background-kako color-black">科学の甲子園</h3>
       <ul class="root-genre-item-list">
-        <li><span class="tag background-kako color-white">科甲</span>科学の甲子園</li>
-        <li><span class="tag background-kako color-white">科甲Jr</span>科学の甲子園ジュニア</li>
-        <li><span class="tag background-kako color-white">SO</span>Science Olympiad</li>
+        <li><span class="tag background-kako color-black">科甲</span>科学の甲子園</li>
+        <li><span class="tag background-kako color-black">科甲Jr</span>科学の甲子園ジュニア</li>
+        <li><span class="tag background-kako color-black">SO</span>Science Olympiad</li>
       </ul>
     </div>
 
