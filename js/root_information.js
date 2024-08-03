@@ -52,7 +52,7 @@ async function getmaxpage() {
   .then(res => {
     max_count = res['count'];
     // page indexes begin from 0
-    max_page = Math.ceil((Math.max(res['count'], 1) - 1) / page_num - 1);
+    max_page = Math.ceil((Math.max(res['count'], 1) - 1) / page_num);
     setbuttons();
   }).catch(error => {
     console.log(error);
