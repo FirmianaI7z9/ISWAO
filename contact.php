@@ -56,7 +56,7 @@
     <hr>
 
     <h3 class="basic-h3">メール</h3>
-    <p class="basic-text">contact@acaoly-notifi.com</p>
+    <p class="basic-text">contact@acaoly-inofficial.com</p>
   </div>
 
   <?php echo default_footer(); ?>
