@@ -111,6 +111,8 @@
       <input type="password" name="confirm_password" class="form-input<?php echo (isset($errors['confirm_password']) && !empty(h($errors['confirm_password']))) ? ' form-input-error' : ''; ?>" id="" value="<?php echo h($datas['confirm_password']); ?>" placeholder="パスワード確認" oninput="if(value.length>16)value = value.substring(0,16);value=value.replaceAll(/[^A-Za-z0-9]/gu,'');"/>
       <p class="invalid-feedback"><?php if (isset($errors['confirm_password'])) echo h($errors['confirm_password']); ?></p>
 
+      <input type="checkbox">
+
       <input type="hidden" name="token" value="<?php echo h($_SESSION['token']); ?>">
       <button type="submit" class="form-button">登録</button>
       <p>既にアカウントをお持ちの方は <a href="login.php">ログイン</a> から</p>
