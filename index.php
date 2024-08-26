@@ -85,7 +85,7 @@
         }
       ?>
     </div>
-    <p class="root-info-text">明日以降の予定は「<a href="schedule.php">スケジュール</a>」へ。</p>
+    <p class="root-info-text">明日以降 &gt;&gt;&gt; <a href="schedule.php">スケジュール</a></p>
   </div>
   <div class="root-info-container">
     <h3 class="root-info-container-title">新着情報 (<?php echo $week->format("m月d日")?>～<?php echo $now->format("m月d日")?>)</h3>
@@ -144,8 +144,7 @@
   <div class="root-info-container">
     <h3 class="root-info-container-title">SNSほか</h3>
     <div class="root-info-container-main">
-      <p>一般向けアカウント：<a href="">Twitter(現X)</a></p>
-      <p>物好き向けアカウント：<a href="">Twitter(現X)</a></p>
+      <p>一般向けアカウント：<a href="https://twitter.com/acaoly_notifi">Twitter(現X)</a></p>
     </div>
   </div>
 

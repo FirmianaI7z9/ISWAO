@@ -14,7 +14,7 @@
   $pre->execute($params);
   $user_data = $pre->fetch();
 
-  $pre = $pdo->prepare("SELECT editorials.id,tags,type,user_id,reference,reference_url,status,problems.problem_name,users.username,users.color FROM editorials INNER JOIN problems ON editorials.problem_id = problems.problem_id INNER JOIN users ON users.id = editorials.user_id WHERE user_id=:i;");
+  $pre = $pdo->prepare("SELECT editorials.id,tags,`type`,user_id,reference,reference_url,`status`,problems.problem_name,users.username,users.color FROM editorials INNER JOIN problems ON editorials.problem_id = problems.problem_id INNER JOIN users ON users.id = editorials.user_id WHERE user_id=:i;");
   $params = array(":i" => $_SESSION['id']);
   $pre->execute($params);
   $editorials = $pre->fetchAll();
