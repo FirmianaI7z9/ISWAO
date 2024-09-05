@@ -37,6 +37,7 @@
   <link rel="stylesheet" href="/css/form.css">
   <link rel="stylesheet" href="/css/editorial.css">
   <link rel="stylesheet" href="/css/past.css">
+  <link rel="stylesheet" href="/css/contest.css">
   <script src=""></script>
 </head>
 
@@ -44,12 +45,27 @@
   <?php echo default_header(); ?>
   <h2 class="h2">Problems</h2>
   <div class="basic-container">
-    <p class="username-large"><?php echo $user_data['username'];?></p>
+    <p class="contest-title"></p>
     <hr>
-    <!-- コンテスト別の問題一覧か、リスト形式のDiff順(など)により一覧かを選択するdropdownを設定 -->
-    <div class="user-profile-container">
-      <!-- ここにとりあえず問題の種別を選ばせるdropdownを設定 -->
-      <!-- table -->
+    <div class="basic-container-inner">
+      <div class="buttons-container">
+        <button type="submit" onclick="">予選</button>
+        <button type="submit" onclick="">本選</button>
+        <button type="submit" onclick="">代表選考合宿</button>
+        <button type="submit" onclick="">リスト</button>
+      </div>
+      <hr>
+      <h3>問題</h3>
+      <table>
+        <tbody>
+          <tr>
+            <th></th>
+            <td>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <?php echo default_footer(); ?>
