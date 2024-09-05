@@ -87,7 +87,7 @@
   background: #000;
 }
 
-.root-content-item a {
+.root-content-item a, .root-genre-item a {
   position: absolute;
   top: 0;
   left: 0;
@@ -96,7 +96,7 @@
   z-index: 3;
 }
 
-.root-content-item a:hover {
+.root-content-item a:hover, .root-genre-item a:hover {
   background-color: #0001;
 }
 
