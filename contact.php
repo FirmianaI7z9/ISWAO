@@ -38,13 +38,11 @@
   <div class="basic-container">
     <h3 class="basic-h3">Twitter アカウント</h3>
     <p class="basic-text"><b>公式 Twitter アカウントの DM から</b> : <a href="https://twitter.com/acaoly_notifi">https://twitter.com/acaoly_notifi</a></p>
-    <p class="basic-text"><b>運営者の Twitter アカウントの DM から</b> : <a href="https://twitter.com/FirmianaSim4104">https://twitter.com/FirmianaSim4104</a></p>
     
     <hr>
 
     <h3 class="basic-h3">マシュマロ (いわゆる質問箱)</h3>
     <p class="basic-text"><b>公式のマシュマロ</b> : <a href="https://marshmallow-qa.com/952sk6bo8cuiych">https://marshmallow-qa.com/952sk6bo8cuiych</a></p>
-    <p class="basic-text"><b>運営者のマシュマロ</b> : <a href="https://marshmallow-qa.com/sj8pny6wh7j9c6k">https://marshmallow-qa.com/sj8pny6wh7j9c6k</a></p>
 
     <hr>
 
