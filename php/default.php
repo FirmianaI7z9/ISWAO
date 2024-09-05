@@ -13,7 +13,6 @@ function default_header() {
             <li><a href="/index.php">ホーム</a></li>
             <li><a href="/info.php">お知らせ</a></li>
             <li><a href="/schedule.php">スケジュール</a></li>
-            <li><a href="/contest.php">コンテスト一覧</a></li>
             <li><a href="/calendar.php">カレンダー</a></li>
             <li><a href="/contact.php">問い合わせ</a></li>
             <li><a href="/about.php">ABOUT</a></li>
@@ -30,7 +29,6 @@ function default_header() {
             <li><a href="/index.php">ホーム</a></li>
             <li><a href="/info.php">お知らせ</a></li>
             <li><a href="/schedule.php">スケジュール</a></li>
-            <li><a href="/contest.php">コンテスト一覧</a></li>
             <li><a href="/calendar.php">カレンダー</a></li>
             <li><a href="/contact.php">問い合わせ</a></li>
             <li><a href="/about.php">ABOUT</a></li>
@@ -52,7 +50,6 @@ function default_footer() {
           <a class="a" href="/index.php">ホーム</a>
           <a class="a" href="/info.php">最新情報・お知らせ</a>
           <a class="a" href="/schedule.php">スケジュール</a>
-          <a class="a" href="/contest.php">コンテスト一覧</a>
           <a class="a" href="/calendar.php">月別カレンダー</a>
           <a class="a" href="/something.php">雑多置き場</a>
           <a class="a" href="/something/d_booking.php">予定被り情報まとめ</a>
