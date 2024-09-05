@@ -372,10 +372,11 @@ p {
   margin: 0 auto;
   top: 0;
   left: 0;
+  height: 75px;
   width: 100%;
   background-color: #fff;
   border-bottom: solid 2px #000;
-  z-index: 10000;
+  z-index: 10;
 }
 
 .hp nav {
