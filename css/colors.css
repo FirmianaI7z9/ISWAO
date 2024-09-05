@@ -85,7 +85,7 @@
 }
 
 .background-mathematics {
-  background-color: #80dbff;
+  background-color: #4dccff;
 }
 
 .background-physics {
@@ -144,9 +144,39 @@
   background-color: #1e6c93;
 }
 
+.background-absolute {
+  background: linear-gradient(135deg,
+    #08acd5 0%, #29c5ec 45%, #7ee5ff 70%, #29c5ec 85%, #08acd5 90% 100%
+  );
+}
+
+.background-first {
+  background: linear-gradient(135deg,
+    #00b956 0%, #2ce181 45%, #9effcb 70%, #2ce181 85%, #00b956 90% 100%
+  );
+}
+
+.background-gold {
+  background: linear-gradient(135deg,
+    #ca8a0b 0%, #daaf08 45%, #fee9a0 70%, #daaf08 85%, #ca8a0b 90% 100%
+  );
+}
+
+.background-silver {
+  background: linear-gradient(135deg,
+    #848484 0%, #9E9E9E 45%, #E8E8E8 70%, #9E9E9E 85%, #848484 90% 100%
+  );
+}
+
+.background-bronze {
+  background: linear-gradient(135deg,
+    #b05c08 0%, #bd8d15 45%, #fed5a0 70%, #bd8d15 85%, #b05c08 90% 100%
+  );
+}
+
 /* border-color */
 .border-mathematics {
-  border-color: #80dbff;
+  border-color: #4dccff;
 }
 
 .border-physics {
@@ -203,4 +233,81 @@
 
 .border-socialscience {
   border-color: #1e6c93;
+}
+
+/* gradient */
+.gradient-black {
+  background: linear-gradient(to bottom, #000 70%, transparent);
+}
+
+.gradient-white {
+  background: linear-gradient(to bottom, #fff 70%, transparent);
+}
+
+.gradient-gray {
+  background: linear-gradient(to bottom, #555 70%, transparent);
+}
+
+.gradient-darkgray {
+  background: linear-gradient(to bottom, #222 70%, transparent);
+}
+
+.gradient-mathematics {
+  background: linear-gradient(to bottom, #4dccff 70%, transparent);
+}
+
+.gradient-physics {
+  background: linear-gradient(to bottom, #002060 70%, transparent);
+}
+
+.gradient-chemistry {
+  background: linear-gradient(to bottom, #d50000 70%, transparent);
+}
+
+.gradient-biology {
+  background: linear-gradient(to bottom, #5b6f3a 70%, transparent);
+}
+
+.gradient-earthscience {
+  background: linear-gradient(to bottom, #ffc000 70%, transparent);
+}
+
+.gradient-informatics {
+  background: linear-gradient(to bottom, #7030a0 70%, transparent);
+}
+
+.gradient-kako {
+  background: linear-gradient(to bottom, #ee0 70%, transparent);
+}
+
+.gradient-linguistics {
+  background: linear-gradient(to bottom, #ff8224 70%, transparent);
+}
+
+.gradient-astronomy {
+  background: linear-gradient(to bottom, #000 70%, transparent);
+}
+
+.gradient-geography {
+  background: linear-gradient(to bottom, #92d050 70%, transparent);
+}
+
+.gradient-philosophy {
+  background: linear-gradient(to bottom, #dddddd 70%, transparent);
+}
+
+.gradient-economics {
+  background: linear-gradient(to bottom, #0070c0 70%, transparent);
+}
+
+.gradient-brainscience {
+  background: linear-gradient(to bottom, #006630 70%, transparent);
+}
+
+.gradient-ai {
+  background: linear-gradient(to bottom, #43a 70%, transparent);
+}
+
+.gradient-socialscience {
+  background: linear-gradient(to bottom, #1e6c93 70%, transparent);
 }
