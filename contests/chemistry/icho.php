@@ -19,10 +19,10 @@
   $pre->execute($params);
   $information = $pre->fetchAll();
 
-  $pre = $pdo->prepare("SELECT * FROM applications WHERE start_at <= :n1 AND finish_at >= :n2 AND tags LIKE '%\"IChO\"%' ORDER BY finish_at ASC;");
-  $params = array(":n1" => $now->format("Y-m-d H:i:s"), ":n2" => $now->format("Y-m-d H:i:s"));
-  $pre->execute($params);
-  $applications = $pre->fetchAll();
+  //$pre = $pdo->prepare("SELECT * FROM applications WHERE start_at <= :n1 AND finish_at >= :n2 AND tags LIKE '%\"IChO\"%' ORDER BY finish_at ASC;");
+  //$params = array(":n1" => $now->format("Y-m-d H:i:s"), ":n2" => $now->format("Y-m-d H:i:s"));
+  //$pre->execute($params);
+  //$applications = $pre->fetchAll();
 
   //$pre = $pdo->prepare("SELECT * FROM streams WHERE finish_at >= :n AND tags LIKE '%\"IChO\"%' ORDER BY start_at DESC;");
   //$params = array(":n" => $now->format("Y:m:d H:i:s"));
@@ -67,7 +67,7 @@
   </div>
 
   <div class="basic-container">
-    <p class="contest-title"><span class="circle-blue"></span>国際化学オリンピック</p>
+    <p class="contest-title"><span class="circle-red"></span>国際化学オリンピック</p>
     <hr>
     <p class="contest-subtitle">International Chemistry Olympiad <span class="tag background-chemistry color-white">IChO</span></p>
   </div>
@@ -105,19 +105,6 @@
       ?>
     </div>
     <p class="root-info-text">より過去のお知らせは「<a href="info.php">お知らせ</a>」へ。</p>
-  </div>
-  <div class="root-info-container">
-    <h3 class="root-info-container-title">申し込み関係情報</h3>
-    <div class="root-info-container-flex">
-      <?php
-        if (count($applications) == 0) {
-          echo '<p>現在申し込み受付はありません。</p>';
-        }
-        else {
-          echo format_schedule_with_month(implode('', array_map('format_schedule', $applications)), false);;
-        }
-      ?>
-    </div>
   </div>
 
   <hr>
