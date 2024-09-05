@@ -60,7 +60,7 @@
   <link rel="stylesheet" href="/css/schedule.css">
   <link rel="stylesheet" href="/css/root_index.css">
   <link rel="stylesheet" href="/css/past.css">
-  <script src="js/schedule_resize.js"></script>
+  <script src="/js/schedule_resize.js"></script>
 </head>
 
 <body>
@@ -212,29 +212,34 @@
 
   <div class="root-genre-container">
     <div class="root-genre-item">
+      <a href="contests/mathematics/index.php"></a>
       <h3 class="root-genre-item-title background-mathematics color-black">数学</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-mathematics color-black">JMO</span>日本数学オリンピック</li>
         <li><span class="tag background-mathematics color-black">JJMO</span>日本ジュニア数学オリンピック</li>
-        <li><span class="additional-tag-wrapper background-black color-white"><span class="additional-tag-innertag background-mathematics color-black">EGMO</span>qual</span>EGMO一次選抜</li>
+        <li><span class="tag background-mathematics color-black">EGMOqual</span>EGMO一次選抜</li>
         <li><span class="tag background-mathematics color-black">IMO</span>国際数学オリンピック</li>
         <li><span class="tag background-mathematics color-black">EGMO</span>ヨーロッパ女子数学オリンピック</li>
         <li><span class="tag background-mathematics color-black">APMO</span>アジア太平洋数学オリンピック</li>
+        <li><span class="tag background-mathematics color-black">浜松</span>高校生数学コンテスト in Hamamatsu</li>
+        <li><span class="tag background-mathematics color-black">PILAME</span>PILAME杯</li>
       </ul>
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/physics/index.php"></a>
       <h3 class="root-genre-item-title background-physics color-white">物理</h3>
       <ul class="root-genre-item-list">
-        <li><span class="tag background-physics color-white">JPhO</span>物理チャレンジ</li>
+        <li><span class="tag background-physics color-white">JPhO</span>全国物理コンテスト 物理チャレンジ</li>
         <li><span class="tag background-physics color-white">IPhO</span>国際物理オリンピック</li>
         <li><span class="tag background-physics color-white">APhO</span>アジア物理オリンピック</li>
+        <li><span class="tag background-physics color-white">EuPhO</span>ヨーロッパ物理オリンピック</li>
         <li><span class="tag background-physics color-white">OPhO</span>Online Physics Olympiad</li>
-        <li><span class="tag background-physics color-white">EuPhO</span>Europian Physics Olympiad</li>
       </ul>
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/chemistry/index.php"></a>
       <h3 class="root-genre-item-title background-chemistry color-white">化学</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-chemistry color-white">JChO</span>化学グランプリ</li>
@@ -243,6 +248,7 @@
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/biology/index.php"></a>
       <h3 class="root-genre-item-title background-biology color-white">生物学</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-biology color-white">JBO</span>日本生物学オリンピック</li>
@@ -251,14 +257,17 @@
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/earthscience/index.php"></a>
       <h3 class="root-genre-item-title background-earthscience color-black">地学</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-earthscience color-black">JESO</span>日本地学オリンピック</li>
         <li><span class="tag background-earthscience color-black">IESO</span>国際地学オリンピック</li>
+        <li><span class="tag background-earthscience color-black">ESF</span>地学フェスティバル</li>
       </ul>
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/informatics/index.php"></a>
       <h3 class="root-genre-item-title background-informatics color-white">情報</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-informatics color-white">JOI</span>日本情報オリンピック</li>
@@ -266,11 +275,13 @@
         <li><span class="tag background-informatics color-white">IOI</span>国際情報オリンピック</li>
         <li><span class="tag background-informatics color-white">EGOI</span>ヨーロッパ女子情報オリンピック</li>
         <li><span class="tag background-informatics color-white">APIO</span>アジア太平洋情報オリンピック</li>
+        <li><span class="tag background-informatics color-white">ICPC</span>国際大学対抗プログラミングコンテスト</li>
         <li><span class="tag background-informatics color-white">OpenOI</span>Open Olympiad in Informatics</li>
       </ul>
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/kako/index.php"></a>
       <h3 class="root-genre-item-title background-kako color-black">科学の甲子園</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-kako color-black">科甲</span>科学の甲子園</li>
@@ -280,6 +291,7 @@
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/linguistics/index.php"></a>
       <h3 class="root-genre-item-title background-linguistics color-black">言語学</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-linguistics color-black">JOL</span>日本言語学オリンピック</li>
@@ -290,6 +302,7 @@
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/astronomy/index.php"></a>
       <h3 class="root-genre-item-title background-astronomy color-white">天文学</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-astronomy color-white">JAO</span>日本天文学オリンピック</li>
@@ -299,6 +312,7 @@
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/geography/index.php"></a>
       <h3 class="root-genre-item-title background-geography color-black">地理</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-geography color-black">JGeO</span>科学地理オリンピック日本選手権</li>
@@ -307,6 +321,7 @@
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/philosophy/index.php"></a>
       <h3 class="root-genre-item-title background-philosophy color-black">哲学</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-philosophy color-black">JPO</span>日本倫理・哲学グランプリ</li>
@@ -315,6 +330,7 @@
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/economics/index.php"></a>
       <h3 class="root-genre-item-title background-economics color-white">経済</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-economics color-white">エコ甲</span>エコノミクス甲子園</li>
@@ -323,6 +339,7 @@
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/brainscience/index.php"></a>
       <h3 class="root-genre-item-title background-brainscience color-white">脳科学</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-brainscience color-white">JBB</span>日本脳科学オリンピック</li>
@@ -331,6 +348,7 @@
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/ai/index.php"></a>
       <h3 class="root-genre-item-title background-ai color-white">人工知能</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-ai color-white">IOAI</span>国際人工知能オリンピック</li>
@@ -338,6 +356,7 @@
     </div>
 
     <div class="root-genre-item">
+      <a href="contests/socialscience/index.php"></a>
       <h3 class="root-genre-item-title background-socialscience color-white">社会科学</h3>
       <ul class="root-genre-item-list">
         <li><span class="tag background-socialscience color-white">IOSS</span>国際社会科学オリンピック</li>
