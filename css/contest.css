@@ -123,3 +123,29 @@ body {
   font-size: 30px;
   font-weight: 500;
 }
+
+.basic-container-inner table ul, .basic-container-inner table ol {
+  margin: 0;
+}
+
+.basic-container-inner .table-wrapper {
+  width: calc(100% - 20px);
+  overflow-x: auto;
+}
+
+.basic-container-inner table {
+  border-collapse: collapse;
+}
+
+.basic-container-inner table td, .basic-container-inner table th {
+  padding: 5px;
+  border: solid 1px #888888;
+}
+
+.basic-container-inner table th {
+  min-width: 100px;
+}
+
+.basic-container-inner table td {
+  min-width: 500px;
+}
