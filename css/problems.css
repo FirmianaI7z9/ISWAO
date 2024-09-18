@@ -1,0 +1,74 @@
+.problems-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: 'Roboto Condensed', 'Noto Sans JP', sans-serif;
+  table-layout: fixed;
+}
+
+.problems-table th {
+  font-weight: 500;
+  width: 120px!important;
+  padding: 8px!important;
+  height: 50px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: solid 1px #888888;
+  text-align: left;
+}
+
+.problems-table td {
+  position: relative;
+  font-weight: 500;
+  width: 120px!important;
+  padding: 8px!important;
+  height: 50px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: solid 1px #888888;
+}
+
+.difficulty-text-small {
+  position: absolute;
+  top: 3px;
+  left: 24px;
+  margin: 0;
+  font-size: 12px;
+  font-family: 'Roboto Condensed';
+}
+
+.difficulty-icon-normal {
+  display: inline-block;
+  transform: rotate(45deg);
+  border-style: solid;
+  border-width: 1px;
+  width: 11px;
+  height: 11px;
+}
+
+.difficulty-icon-large {
+  display: inline-block;
+  transform: rotate(45deg);
+  border-style: solid;
+  border-width: 1px;
+  width: 18px;
+  height: 18px;
+}
+
+.problem-genre-text {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  margin: 0;
+  font-size: 11px;
+  text-align: right;
+  color: #666666;
+}
+
+.problem-name-normal {
+  font-weight: 500;
+  text-decoration: none;
+}
