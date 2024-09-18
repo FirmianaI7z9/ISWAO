@@ -311,3 +311,22 @@
 .gradient-socialscience {
   background: linear-gradient(to bottom, #1e6c93 70%, transparent);
 }
+
+/*
+
+レーティングの色 (メモ)
+-1         #000000
+0-299      #808080
+300-599    #0000ff
+600-899    #00c0c0
+900-1199   #008000
+1200-1499  #c0c000
+1500-1799  #ff8000
+1800-2099  #ff0000
+2100-2399  #ff80ff
+2400-2699  #a000a0
+2700-2999  BRONZE
+3000-3299  SILVER
+3300-      GOLD  
+
+*/
