@@ -31,7 +31,7 @@ function movepage(d) {
 function setbuttons() {
   var buttons = document.getElementsByClassName('pagebutton');
   for (let i = 0; i < buttons.length; i++) {
-    if (current_page + i - 2 < 0 || current_page + i - 2 > max_page) {
+    if (current_page + i - 2 < 0 || current_page + i - 2 >= max_page) {
       buttons[i].disabled = true;
       buttons[i].innerText = '';
     }
@@ -52,7 +52,7 @@ async function getmaxpage() {
   .then(res => {
     max_count = res['count'];
     // page indexes begin from 0
-    max_page = Math.ceil((Math.max(res['count'], 1) - 1) / page_num);
+    max_page = Math.ceil(Math.max(res['count'], 1) / page_num);
     setbuttons();
   }).catch(error => {
     console.log(error);
