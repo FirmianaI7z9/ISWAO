@@ -276,7 +276,6 @@
         <li><span class="tag background-informatics color-white">EGOI</span>ヨーロッパ女子情報オリンピック</li>
         <li><span class="tag background-informatics color-white">APIO</span>アジア太平洋情報オリンピック</li>
         <li><span class="tag background-informatics color-white">ICPC</span>国際大学対抗プログラミングコンテスト</li>
-        <li><span class="tag background-informatics color-white">OpenOI</span>Open Olympiad in Informatics</li>
       </ul>
     </div>
 
