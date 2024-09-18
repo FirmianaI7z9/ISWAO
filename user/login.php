@@ -89,7 +89,7 @@
       <input type="text" name="name" class="form-input<?php echo (isset($errors['name']) && !empty(h($errors['name']))) ? ' form-input-error' : ''; ?>" value="<?php echo h($datas['name']); ?>" placeholder="ユーザー名" oninput="if(value.length>16)value = value.substring(0,16);value=value.replaceAll(/[^A-Za-z0-9_]/gu,'');"/>
       <p class="invalid-feedback"><?php if (isset($errors['name'])) echo h($errors['name']); ?></p>
 
-      <input type="text" name="password" class="form-input<?php echo (isset($errors['password']) && !empty(h($errors['password']))) ? ' form-input-error' : ''; ?>" id="" value="<?php echo h($datas['password']); ?>" placeholder="パスワード" oninput="if(value.length>16)value = value.substring(0,16);value=value.replaceAll(/[^A-Za-z0-9]/gu,'');"/>
+      <input type="password" name="password" class="form-input<?php echo (isset($errors['password']) && !empty(h($errors['password']))) ? ' form-input-error' : ''; ?>" id="" value="<?php echo h($datas['password']); ?>" placeholder="パスワード" oninput="if(value.length>16)value = value.substring(0,16);value=value.replaceAll(/[^A-Za-z0-9]/gu,'');"/>
       <p class="invalid-feedback"><?php if (isset($errors['password'])) echo h($errors['password']); ?></p>
 
       <input type="hidden" name="token" value="<?php echo h($_SESSION['token']); ?>">
