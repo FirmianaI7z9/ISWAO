@@ -77,11 +77,11 @@ function default_footer() {
         </div>
         <div class="i">
           <h3>Contact Developer & SNS</h3>
-          <a class="a" href="contact.php">サイトの不具合報告</a>
-          <a class="a" href="contact.php">サイトへの要望</a>
+          <a class="a" href="/contact.php">サイトの不具合報告</a>
+          <a class="a" href="/contact.php">サイトへの要望</a>
           <p class="p">Email<br>(preparing)</p>
           <a class="a" href="https://twitter.com/acaoly_notifi" target="_blank" rel="noopener noreferrer">X(Twitter) @acaoly_notifi</a>
-          <img class="m" src="img/comp_site_thumbnail_2.png"/>
+          <img class="m" src="/img/comp_site_thumbnail_2.png"/>
         </div>
       </div>
       <p class="cr">© 2023-2024 ISWAO,Firmiana</p>
@@ -249,7 +249,23 @@ function format_info($item) {
 
 function format_editorial($item) {
   $tags = implode('', array_map('format_genre', json_decode($item['tags'])));
-  $str = '<div class="editorial-link"><a href="/contests/common/editorial.php?id='.strval($item['id']).'"></a><p class="editorial-link-title">'.($item['problem_name']).'</p><p class="editorial-link-data">'.$tags.' by <a class="username" style="color:#'.$item['color'].'">'.$item['username'].'</a> ('.get_editorial_status($item['status']).')</p></div>';
+  $str = '';
+  if ($item['type'] == 0) {
+    $str = '<div class="editorial-link"><a href="'.$item['reference_url'].'" target="_blank" rel="noopener noreferrer"></a><p class="editorial-link-title">'.($item['problem_name']).'</p><p class="editorial-link-data">'.$tags.' by <a class="username" style="color:#000000">Official</a>';
+  }
+  else if ($item['type'] == 1) {
+    $str = '<div class="editorial-link"><a href="'.$item['reference_url'].'" target="_blank" rel="noopener noreferrer"></a><p class="editorial-link-title">'.($item['problem_name']).'</p><p class="editorial-link-data">'.$tags.' by <a class="username" style="color:#000000">'.$item['reference'].'</a>';
+  }
+  else if ($item['type'] == 2) {
+    $str = '<div class="editorial-link"><a href="/contests/common/editorial.php?id='.strval($item['id']).'" target="_blank" rel="noopener noreferrer"></a><p class="editorial-link-title">'.($item['problem_name']).'</p><p class="editorial-link-data">'.$tags.' by <a class="username" style="color:#'.$item['color'].'">'.$item['username'].'</a>';
+  }
+
+  if ($item['status'] != 0) {
+    $str .= ' ('.get_editorial_status($item['status']).')</p></div>';
+  }
+  else {
+    $str .= '</p></div>';
+  }
   return $str;
 }
 
@@ -263,7 +279,54 @@ function get_editorial_status($status) {
       return '非公開';
     case 3:
       return '審査中';
+    case 4:
+      return '掲載不許可';
     default:
       return '?'; 
+  }
+}
+
+function get_difficulty_color_1($diff) {
+  if ($diff <= 0) {
+    return '#000000';
+  }
+  else if ($diff < 300) {
+    return '#808080';
+  }
+  else if ($diff < 600) {
+    return '#0000ff';
+  }
+  else if ($diff < 900) {
+    return '#00c0c0';
+  }
+  else if ($diff < 1200) {
+    return '#008000';
+  }
+  else if ($diff < 1500) {
+    return '#c0c000';
+  }
+  else if ($diff < 1800) {
+    return '#ff8000';
+  }
+  else if ($diff < 2100) {
+    return '#ff0000';
+  }
+  else if ($diff < 2400) {
+    return '#ff80ff';
+  }
+  else {
+    return '#a000a0';
+  }
+}
+
+function get_difficulty_color_2($diff) {
+  if ($diff < 3000) {
+    return 'border-color: #b05c08; background: linear-gradient(to top left, #b05c08 10%, #bd8d15 30%, #fed5a0 50%, #bd8d15 70%, #b05c08 90% 100%);';
+  }
+  else if ($diff < 3300) {
+    return 'border-color: #848484; background: linear-gradient(to top left, #848484 10%, #9E9E9E 30%, #E8E8E8 50%, #9E9E9E 70%, #848484 90% 100%);';
+  }
+  else {
+    return 'border-color: #ca8a0b; background: linear-gradient(to top left, #ca8a0b 10%, #daaf08 30%, #fee9a0 50%, #daaf08 70%, #ca8a0b 90% 100%);';
   }
 }
