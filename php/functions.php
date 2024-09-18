@@ -36,6 +36,9 @@ function validation($datas,$confirm = true)
     }else if(empty($errors['password']) && ($datas["password"] != $datas["confirm_password"])){
       $errors['confirm_password'] = "確認用パスワードが一致しません。";
     }
+    if(empty($datas["check"]) || $datas["check"] != "TRUE"){
+      $errors['check'] = "利用規約およびプライバシーポリシーに同意しない場合はアカウントを作成できません。";
+    }
   }
 
   return $errors;
