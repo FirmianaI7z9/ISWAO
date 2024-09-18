@@ -8,7 +8,8 @@
   $datas = [
     'name'  => '',
     'password'  => '',
-    'confirm_password'  => ''
+    'confirm_password'  => '',
+    'check' => ''
   ];
 
   if($_SERVER['REQUEST_METHOD'] != 'POST'){
@@ -98,6 +99,8 @@
 
   <div class="wrapper">
     <h2 class="h2">Signup</h2>
+    <p>注意：解説の作成以外の全ての機能は、ユーザー登録なしで利用可能です。</p>
+
     <form action="<?php echo $_SERVER ['SCRIPT_NAME']; ?>" method="post">
       <label for="name">ユーザー名(1～16文字、半角英数字と_のみ)</label>
       <input type="text" name="name" class="form-input<?php echo (isset($errors['name']) && !empty(h($errors['name']))) ? ' form-input-error' : ''; ?>" value="<?php echo h($datas['name']); ?>" placeholder="ユーザー名" oninput="if(value.length>16)value = value.substring(0,16);value=value.replaceAll(/[^A-Za-z0-9_]/gu,'');"/>
@@ -107,11 +110,14 @@
       <input type="password" name="password" class="form-input<?php echo (isset($errors['password']) && !empty(h($errors['password']))) ? ' form-input-error' : ''; ?>" id="" value="<?php echo h($datas['password']); ?>" placeholder="パスワード" oninput="if(value.length>16)value = value.substring(0,16);value=value.replaceAll(/[^A-Za-z0-9]/gu,'');"/>
       <p class="invalid-feedback"><?php if (isset($errors['password'])) echo h($errors['password']); ?></p>
 
-      <label for="name">パスワード確認</label>
+      <label for="confirm_password">パスワード確認</label>
       <input type="password" name="confirm_password" class="form-input<?php echo (isset($errors['confirm_password']) && !empty(h($errors['confirm_password']))) ? ' form-input-error' : ''; ?>" id="" value="<?php echo h($datas['confirm_password']); ?>" placeholder="パスワード確認" oninput="if(value.length>16)value = value.substring(0,16);value=value.replaceAll(/[^A-Za-z0-9]/gu,'');"/>
       <p class="invalid-feedback"><?php if (isset($errors['confirm_password'])) echo h($errors['confirm_password']); ?></p>
 
-      <input type="checkbox">
+      <label for="check"><a href="terms_of_service.php">利用規約</a>および<a href="privacy_policy.php">プライバシーポリシー</a>に同意する場合はチェック</label>
+      <input type="hidden" name="check" value="FALSE">
+      <input type="checkbox" name="check" value="TRUE">
+      <p class="invalid-feedback"><?php if (isset($errors['check'])) echo h($errors['check']); ?></p>
 
       <input type="hidden" name="token" value="<?php echo h($_SESSION['token']); ?>">
       <button type="submit" class="form-button">登録</button>
