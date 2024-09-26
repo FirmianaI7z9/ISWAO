@@ -31,8 +31,8 @@
     $errors = validation($datas,false);
     if(empty($errors)){
       $stmt = $pdo->prepare("SELECT id,username,password FROM users WHERE username = :name");
-      $params = array(":name" => $datas['name']);
-      $stmt->execute($params);
+      $stmt->bindValue(":name", $datas['name'], PDO::PARAM_STR);
+      $stmt->execute();
 
       if($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         if (password_verify($datas['password'],$row['password'])) {
