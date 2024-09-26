@@ -3,6 +3,10 @@
   require_once "../../../php/db_connect.php";
   require_once "../../../php/functions.php";
   session_start();
+
+  $pre = $pdo->prepare("SELECT * FROM `contests` WHERE `contest_id` LIKE '01-01-%' ORDER BY `number` DESC;");
+  $pre->execute();
+  $contests = $pre->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +35,7 @@
   <link rel="stylesheet" href="/css/past.css">
   <link rel="stylesheet" href="/css/root_index.css">
   <link rel="stylesheet" href="/css/contest.css">
+  <link rel="stylesheet" href="/css/problems.css">
 </head>
 
 <body>
@@ -73,6 +78,50 @@
       </ol>
       <p>なお、第10回大会以前の過去問のうち一部は、英語で <a href="https://artofproblemsolving.com/community/c3327_japan_mo_finals" target="_blank" rel="noopener noreferrer">AoPS</a> に掲載されています。本ウェブサイトの過去問一覧ページと併せてご活用ください。</p>
       <p>注：上記の通り、各問題の平均点データは本選の第28回大会以降のみしか一般公開されていませんので、過去問のDifficulty算出はこちらの問題に限られます。</p>
+    </div>
+  </div>
+
+  <div class="basic-container">
+    <div class="basic-container-inner">
+      <h3 class="border-mathematics">過去大会一覧</h3>
+      <div class="table-wrapper">
+        <table class="problems-table">
+          <thead>
+            <tr>
+              <th>略称</th>
+              <th>大会名</th>
+              <th>回数</th>
+              <th>備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+              function contest_color($val) {
+                switch ($val) {
+                  case 1:
+                    return 'blue';
+                  case 2:
+                    return 'green';
+                  case 3:
+                    return 'red';
+                  case 4:
+                    return 'orange';
+                }
+              }
+              for ($i = 0; $i < count($contests); $i++) {
+                $item = $contests[$i];
+                $str = '<tr>';
+                $str .= '<th><span class="circle-'.contest_color($item['contest_class']).'"></span>'.$item['contest_name'].'</th>';
+                $str .= '<td>'.$item['longname'].'</td>';
+                $str .= '<td>'.$item['number'].'</td>';
+                $str .= '<td>'.$item['info'].'</td>';
+                $str .= '</tr>';
+                echo $str;
+              }
+            ?>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
