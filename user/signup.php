@@ -28,8 +28,8 @@
 
     if(empty($errors['name'])){
       $stmt = $pdo->prepare("SELECT id FROM users WHERE username = :name");
-      $params = array(':name' => $datas['name']);
-      $stmt->execute($params);
+      $stmt->bindValue(':name', $datas['name'], PDO::PARAM_STR);
+      $stmt->execute();
       if($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $errors['name'] = 'このユーザ名は既に使用されています。';
       }
@@ -37,10 +37,8 @@
 
     if(empty($errors)){
       $params = [
-        'id' =>null,
         'username'=>$datas['name'],
         'password'=>password_hash($datas['password'], PASSWORD_DEFAULT),
-        'created_at'=>null,
         'titles'=>'["一般ユーザー"]'
       ];
 
@@ -61,7 +59,10 @@
       try {
         $sql = 'INSERT INTO users ('.$columns .') VALUES('.$values.')';
         $stmt = $pdo->prepare($sql);
-        $stmt->execute($params);
+        $stmt->bindValue(":username", $params['username'], PDO::PARAM_STR);
+        $stmt->bindValue(":password", $params['password'], PDO::PARAM_STR);
+        $stmt->bindValue(":titles", $params['titles'], PDO::PARAM_STR);
+        $stmt->execute();
         $pdo->commit();
         header("location: login.php");
         exit;
