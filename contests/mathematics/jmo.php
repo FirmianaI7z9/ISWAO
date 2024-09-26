@@ -138,7 +138,7 @@
     </div>
     
     <div class="root-content-item">
-      <a href="../common/problems.php?c="></a>
+      <a href="../common/problems.php?id=01-01-*-*-01&m=0"></a>
       <h3 class="root-content-item-title">過去問一覧</h3>
       <p class="root-content-item-text">JMOの過去問を掲載しています。</p>
     </div>
