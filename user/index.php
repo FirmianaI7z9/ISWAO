@@ -5,8 +5,8 @@
   session_start();
 
   $pre = $pdo->prepare("SELECT * FROM users WHERE username = :i");
-  $params = array(":i" => $_GET['user']);
-  $pre->execute($params);
+  $pre->bindValue(":i", $_GET['user'], PDO::PARAM_STR);
+  $pre->execute();
   $user_data = $pre->fetch();
 
   $pre = $pdo->prepare("SELECT editorials.id,contests.tags,type,user_id,reference,reference_url,status,problems.problem_name,users.username,users.color FROM editorials INNER JOIN problems ON editorials.problem_id = problems.problem_id INNER JOIN contests ON editorials.problem_id LIKE CONCAT(contests.contest_id, '%') INNER JOIN users ON users.id = editorials.user_id WHERE user_id=:i;");
@@ -85,8 +85,9 @@
         <h3 class="user-profile-item-title">User Editorials</h3>
         <div class="editorial-link-container">
           <?php
-            if (count($editorials) > 0) {
-              echo implode('', array_map('format_editorial', $editorials));
+            $str = implode('', array_map('format_editorial_1', $editorials));
+            if (count($editorials) > 0 && $str != '') {
+              echo $str;
             }
             else {
               echo '<p>このユーザーはまだ解説を作成していません。</p>';
