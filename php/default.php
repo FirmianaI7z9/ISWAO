@@ -247,7 +247,12 @@ function format_info($item) {
   return $str;
 }
 
-function format_editorial($item) {
+function format_editorial_1($item) {
+  if ($item['status'] != 0) return '';
+  return format_editorial_2($item);
+}
+
+function format_editorial_2($item) {
   $tags = implode('', array_map('format_genre', json_decode($item['tags'])));
   $str = '';
   if ($item['type'] == 0) {
