@@ -10,13 +10,13 @@
   }
 
   $pre = $pdo->prepare("SELECT * FROM users WHERE id=:i;");
-  $params = array(":i" => $_SESSION['id']);
-  $pre->execute($params);
+  $pre->bindValue(":i", $_SESSION['id'], PDO::PARAM_INT);
+  $pre->execute();
   $user_data = $pre->fetch();
 
   $pre = $pdo->prepare("SELECT editorials.id,contests.tags,type,user_id,reference,reference_url,status,problems.problem_name,users.username,users.color FROM editorials INNER JOIN problems ON editorials.problem_id = problems.problem_id INNER JOIN contests ON editorials.problem_id LIKE CONCAT(contests.contest_id, '%') INNER JOIN users ON users.id = editorials.user_id WHERE user_id=:i;");
-  $params = array(":i" => $_SESSION['id']);
-  $pre->execute($params);
+  $pre->bindValue(":i", $_SESSION['id'], PDO::PARAM_INT);
+  $pre->execute();
   $editorials = $pre->fetchAll();
 ?>
 
@@ -100,7 +100,7 @@
         <div class="editorial-link-container">
           <?php
             if (count($editorials) > 0) {
-              echo implode('', array_map('format_editorial', $editorials));
+              echo implode('', array_map('format_editorial_2', $editorials));
             }
             else {
               echo '<p>まだ解説を作成していません。解説の作成は、各問題のページから行うことができます。</p>';
