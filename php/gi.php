@@ -13,14 +13,15 @@ $data = json_decode($raw);
 
 if ($data->genre == 'all') {
   $pre = $pdo->prepare("SELECT * FROM information ORDER BY created_at DESC LIMIT :x OFFSET :y;");
-  $params = array(":x" => min(($data->page + 1) * 20, $data->max), ":y" => max($data->page * 20, 0));
-  $pre->execute($params);
+  $pre->bindValue(":x", min(($data->page + 1) * 20, $data->max), PDO::PARAM_INT);
+  $pre->bindvalue(":y", max($data->page * 20, 0), PDO::PARAM_INT);
+  $pre->execute();
   $res = $pre->fetchAll();
 }
 else {
   $pre = $pdo->prepare("SELECT * FROM information WHERE tags LIKE :l ORDER BY created_at DESC;");
-  $params = array(":l" => '"'.$data['genre'].'"');
-  $pre->execute($params);
+  $pre->bindValue(":l", '"'.$data['genre'].'"', PDO::PARAM_STR);
+  $pre->execute();
   $res = $pre->fetchAll();
 }
 
