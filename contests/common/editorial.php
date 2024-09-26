@@ -24,9 +24,13 @@
                         INNER JOIN `contests` ON `problems`.`problem_id` LIKE CONCAT(`contests`.`contest_id`, '-%')
                         INNER JOIN `users` ON `editorials`.`user_id` LIKE `users`.`id`
                         WHERE `editorials`.`id` = :id;");
-  $params = array(":id" => $_GET['id']);
-  $pre->execute($params);
+  $pre->bindValue(":id", $_GET['id'], PDO::PARAM_INT);
+  $pre->execute();
   $editorial = $pre->fetch();
+
+  if ($editorial['status'] != 0 && (!isset($_SESSION['id']) || $_SESSION['id'] != $editorial['user_id'])) {
+    header("location: ../../401.html");
+  }
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +65,7 @@
 
 <body>
   <?php echo default_header(); ?>
-  <h2 class="h2">User Editorial</h2>
+  <h2 class="h2">User Editorial <?php if (isset($_GET['pre']) && $_GET['pre'] == 1) echo '(Preview)'; ?></h2>
   <div class="basic-container">
     <p class="username-large" style="color:<?php echo get_difficulty_color_1($editorial['difficulty']); ?>; padding-left: 5px;">
       <?php 
@@ -79,7 +83,8 @@
       ?>
       <?php echo $editorial['problem_name'];?></p>
     <hr>
-    <p class="user-belongs"><?php echo format_genre(json_decode($editorial['tags'])[0]); ?> by <a class="username" href="/user/index.php?user=<?php echo $editorial['username']; ?>" style="color:#<?php echo $editorial['color']; ?>"><?php echo $editorial['username']; ?></a> ,Updated at <?php echo (new DateTime($editorial['updated_at']))->format("Y-m-d H:i"); ?></p>
+    <p class="user-belongs"><?php echo format_genre(json_decode($editorial['tags'])[0]); ?> by <a class="username" href="/user/index.php?user=<?php echo $editorial['username']; ?>" style="color:#<?php echo $editorial['color']; ?>"><?php echo $editorial['username']; ?></a> ,Updated at <?php echo (new DateTime($editorial['updated_at']))->format("Y-m-d H:i"); ?>
+    <?php echo ((isset($_SESSION['id']) && $_SESSION['id'] === $editorial['user_id'] && (!isset($_GET['pre']) || $_GET['pre'] != 1)) ? '<a href="create_editorial.php?pid='.$editorial['problem_id'].'&eid='.strval($editorial['id']).'" target="_blank" rel="noopener noreferrer">編集</a>' : ''); ?></p>
   </div>
   <div class="basic-container">
     <div class="basic-container-inner">
