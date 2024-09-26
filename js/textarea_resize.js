@@ -7,7 +7,6 @@ function flexTextarea(el) {
 
 document.addEventListener("DOMContentLoaded", () => {
   var items = document.getElementsByClassName("edit-textarea-container");
-  console.log(items.length);
   for (let i = 0; i < items.length; i++) {
     flexTextarea(items[i]);
   }
