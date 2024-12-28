@@ -44,7 +44,7 @@
     <p class="basic-text"><a class="username" href="/user/index.php?user=Fernweh" style="color:#0078b8;">Fernweh</a>、<a class="username" href="/user/index.php?user=Fernweh2" style="color:#0078b8;">Fernweh2</a>、<a class="username" href="/user/index.php?user=admin" style="color:#000000;">admin</a>、<a class="username" href="/user/index.php?user=anonymous" style="color:#000000;">anonymous</a></p>
     <hr>
     <p class="basic-text">以下は1問以上解説を書いたユーザーの皆様です。ご協力ありがとうございます。</p>
-    <p class="basic-text"></p>
+    <p class="basic-text"><a class="username" href="/user/index.php?user=Am243" style="color:#000000;">Am243</a></p>
   </div>
 
   <?php echo default_footer(); ?>
