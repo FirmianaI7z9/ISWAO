@@ -69,8 +69,8 @@
         <div class="edit-textarea-dummy" aria-disabled="true"><?php echo($editorial['text']); ?></div>
         <textarea class="edit-textarea" id="editorial_text"><?php echo($editorial['text']); ?></textarea>
       </div>
-      <button type="submit" class="button-blue" onclick="submit_editorial('<?php echo $_GET['pid']; ?>', 0);">提出 (審査待ち)</button>
-      <button type="submit" class="button-white" onclick="submit_editorial('<?php echo $_GET['pid']; ?>', 1);">下書き保存</button>
+      <button type="submit" class="button-blue" onclick="submit_editorial('<?php echo $_GET['pid']; ?>', 0, <?php echo $_SESSION['editorial_id']; ?>);">提出 (審査待ち)</button>
+      <button type="submit" class="button-white" onclick="submit_editorial('<?php echo $_GET['pid']; ?>', 1, <?php echo $_SESSION['editorial_id']; ?>);">下書き保存</button>
       <button type="submit" class="button-white" onclick="window.open('editorial.php?id=<?php echo $editorial['id'];?>&pre=1')">プレビュー</button>
     </div>
   </div>

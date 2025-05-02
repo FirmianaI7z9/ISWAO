@@ -33,7 +33,9 @@
       <a href="stream_a.php">Stream</a>,
       <a href="contest_a.php">Contest</a>,
       <a href="problemset_a.php">ProblemSet</a>,
-      <a href="problem_a.php">Problem</a>,
+      <a href="problems_a.php">Problem</a>,
+      <a href="problemset_a_auto.php">ProblemSet一括</a>,
+      <a href="problems_a_csv.php">Problem一括</a>,
       <a href="editorials_a.php">Editorials</a>
     </p>
   </div>
@@ -47,8 +49,15 @@
       <a href="stream_e.php">Stream</a>,
       <a href="contest_e.php">Contest</a>,
       <a href="problemset_e.php">ProblemSet</a>,
-      <a href="problem_e.php">Problem</a>,
+      <a href="problems_e.php">Problem</a>,
       <a href="editorials_e.php">Editorials</a>
+    </p>
+  </div>
+
+  <div class="basic-container">
+    <h3 class="basic-h3">Console</h3>
+    <p class="basic-text">
+      <a href="users.php">Users</a>
     </p>
   </div>
 

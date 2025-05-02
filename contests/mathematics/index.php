@@ -56,7 +56,7 @@
   <link rel="stylesheet" href="/css/past.css">
   <link rel="stylesheet" href="/css/root_index.css">
   <link rel="stylesheet" href="/css/contest.css">
-  <script src="/js/schedule_resize.js"></script>
+  <script src="/js/schedule_resize.js?version=2"></script>
 </head>
 
 <body>
@@ -147,15 +147,9 @@
     </div>
     
     <div class="root-content-item">
-      <a href="../common/problems.php"></a>
+      <a href=""></a>
       <h3 class="root-content-item-title">全大会過去問一覧</h3>
       <p class="root-content-item-text">数学関係の大会の過去問を一覧できます。</p>
-    </div>
-    
-    <div class="root-content-item">
-      <a href="../common/editorial_request.php"></a>
-      <h3 class="root-content-item-title">ユーザー解説需要リスト</h3>
-      <p class="root-content-item-text">まだユーザー解説が無い過去問のうち、解説の需要が大きいものを挙げています (登録ユーザー向け機能)。</p>
     </div>
     
     <div class="root-content-item">
@@ -191,6 +185,13 @@
       </div>
     </div>
     <div class="contest-link background-mathematics">
+      <a href="egmo_qual.php"></a>
+      <p class="whiteletter-light color-mathematics">JGMO</p>
+      <div class="contest-link-content">
+        <h3 class="light-underline">日本女子数学オリンピック</h3>
+      </div>
+    </div>
+    <div class="contest-link background-mathematics">
       <a href="imo.php"></a>
       <p class="whiteletter-light color-mathematics">IMO</p>
       <div class="contest-link-content">
@@ -202,13 +203,6 @@
       <p class="whiteletter-light color-mathematics">EGMO</p>
       <div class="contest-link-content">
         <h3 class="light-underline">ヨーロッパ女子数学オリンピック</h3>
-      </div>
-    </div>
-    <div class="contest-link background-mathematics">
-      <a href="egmo_qual.php"></a>
-      <p class="whiteletter-light color-mathematics">EGMOqual</p>
-      <div class="contest-link-content">
-        <h3 class="light-underline">EGMO日本代表一次選抜</h3>
       </div>
     </div>
     <div class="contest-link background-mathematics">

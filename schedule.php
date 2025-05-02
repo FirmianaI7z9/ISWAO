@@ -18,8 +18,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <meta name="description" content="学術オリンピックや競技科学に関する様々な情報をまとめた非公式サイトのホームページ">
-  <meta property="og:url" content="https://acaoly-inofficial.com/index.php">
+  <meta property="og:url" content="https://acaoly-inofficial.com/schedule.php">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="学術オリンピック非公式まとめサイト">
   <meta property="og:image" content="https://acaoly-inofficial.com/img/comp_site_thumbnail.png">
@@ -35,7 +34,7 @@
   <link rel="stylesheet" href="/css/colors.css">
   <link rel="stylesheet" href="/css/schedule.css">
   <link rel="stylesheet" href="/css/past.css">
-  <script src="/js/schedule_resize.js"></script>
+  <script src="/js/schedule_resize.js?version=2"></script>
 </head>
 
 <body>

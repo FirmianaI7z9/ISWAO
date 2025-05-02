@@ -9,48 +9,82 @@
   $id = str_replace("*", "%", $_GET['id']);
 
   function check($value) {
+    $x = 0;
+    for ($i = 0; $i < strlen($value); $i++) if ($value[$i] === '-') $x++;
+    if ($x != 4) return false;
     return preg_match('/\A[0-9\-\%]*\z/u', $value) === 1;
   }
 
-  if (!check($id)) $id = '%-%-%-%-%';
+  if (!check($id)) {
+    $isok = false;
+  }
+  else {
+    $isok = true;
+  }
 
-  $ids = explode("-", $id);
+  if ($isok) {
+    $ids = explode("-", $id);
 
-  // AA-BB-CCCC-C'-DD
-  // AA : 分野
-  // BB : 大会種別
-  // CCCC : 年次
-  // C' : 同一年次内の大会区別用
-  // DD : 問題セット
+    // AA-BB-CCCC-C'-DD
+    // AA : 分野
+    // BB : 大会種別
+    // CCCC : 年次
+    // C' : 同一年次内の大会区別用
+    // DD : 問題セット
 
-  $sql = "SELECT * FROM `problems` RIGHT JOIN 
-          (SELECT 
-            `contests`.`contest_name` AS `contest_name`,
-            `contests`.`number` AS `number`,
-            `contests`.`contest_class` AS `class`,
-            `problemsets`.`set_id` AS `set_id`,
-            `problemsets`.`set_name` AS `set_name`
-          FROM `contests` 
-          INNER JOIN `problemsets` 
-          ON `problemsets`.`set_id` LIKE CONCAT(`contests`.`contest_id`, '-%')
-          WHERE `contests`.`contest_id` LIKE :abc AND SUBSTRING(`problemsets`.`set_id`, 14, 2) LIKE :d
-          ORDER BY `problemsets`.`set_id` DESC)`setdata` 
-          ON `problems`.`problem_id` LIKE CONCAT(`setdata`.`set_id`, '-%')
-          WHERE `problem_id` IS NOT NULL
-          ORDER BY `setdata`.`set_id` DESC, `problems`.`problem_id` ASC;";
-  $pre = $pdo->prepare($sql);
-  $pre->bindValue(":abc", $ids[0]."-".$ids[1]."-".$ids[2]."-".$ids[3], PDO::PARAM_STR);
-  $pre->bindValue(":d", $ids[4], PDO::PARAM_STR);
-  $pre->execute();
-  $problems = $pre->fetchAll();
+    $sql = "SELECT
+              `problems`.`id`,
+              `setdata`.`contest_name`,
+              `problems`.`correct_rate`,
+              `problems`.`genre`,
+              `problems`.`difficulty`,
+              `problems`.`is_estimated`,
+              `setdata`.`number`,
+              `problems`.`problem_id`,
+              `problems`.`problem_name`,
+              `setdata`.`set_id`,
+              `setdata`.`set_name`,
+              `setdata`.`class`,
+              `problems`.`created_at`,
+              `problems`.`updated_at`,
+              COUNT(`problemlinks`.`id`) AS `problem_exists` 
+            FROM `problems` RIGHT JOIN 
+            (SELECT 
+              `contests`.`contest_name` AS `contest_name`,
+              `contests`.`number` AS `number`,
+              `contests`.`contest_class` AS `class`,
+              `problemsets`.`set_id` AS `set_id`,
+              `problemsets`.`set_name` AS `set_name`
+            FROM `contests` 
+            INNER JOIN `problemsets` 
+            ON `problemsets`.`set_id` LIKE CONCAT(`contests`.`contest_id`, '-%')
+            WHERE `contests`.`contest_id` LIKE :abc AND SUBSTRING(`problemsets`.`set_id`, 14, 2) LIKE :d
+            ORDER BY `problemsets`.`set_id` DESC)`setdata` 
+            ON `problems`.`problem_id` LIKE CONCAT(`setdata`.`set_id`, '-%')
+            LEFT JOIN `problemlinks`
+            ON `problemlinks`.`problem_ids` LIKE CONCAT('%', `problems`.`problem_id`, '%')
+            WHERE `problem_id` IS NOT NULL
+            GROUP BY `problems`.`id`
+            ORDER BY `setdata`.`set_id` DESC, `problems`.`problem_id` ASC;";
+    $pre = $pdo->prepare($sql);
+    $pre->bindValue(":abc", $ids[0]."-".$ids[1]."-".$ids[2]."-".$ids[3], PDO::PARAM_STR);
+    $pre->bindValue(":d", $ids[4], PDO::PARAM_STR);
+    $pre->execute();
+    $problems = $pre->fetchAll();
 
-  $sql = "SELECT DISTINCT `set_name` FROM `problemsets` WHERE `problemsets`.`set_id` LIKE CONCAT(:abc, '-%');";
-  $pre = $pdo->prepare($sql);
-  $pre->bindValue(":abc", $ids[0]."-".$ids[1]."-".$ids[2]."-".$ids[3], PDO::PARAM_STR);
-  $pre->execute();
-  $sets = $pre->fetchAll();
+    $sql = "SELECT DISTINCT `set_name`, SUBSTRING(`set_id`, 14, 2) AS `set_num` FROM `problemsets` WHERE `problemsets`.`set_id` LIKE CONCAT(:abc, '-%') ORDER BY `set_num` ASC;";
+    $pre = $pdo->prepare($sql);
+    $pre->bindValue(":abc", $ids[0]."-".$ids[1]."-".$ids[2]."-".$ids[3], PDO::PARAM_STR);
+    $pre->execute();
+    $sets = $pre->fetchAll();
 
-  console_log($problems);
+    $pre = $pdo->prepare("SELECT * FROM `contestname` WHERE `contest_id` = :i;");
+    $pre->bindValue(":i", $ids[0]."-".$ids[1], PDO::PARAM_STR);
+    $pre->execute();
+    $contest = $pre->fetch();
+
+    console_log($problems);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -59,49 +93,63 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <meta name="description" content="学術オリンピックや競技科学に関する様々な情報をまとめた非公式サイトのホームページ">
-  <meta property="og:url" content="https://acaoly-inofficial.com/index.php">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="学術オリンピック非公式まとめサイト">
   <meta property="og:image" content="https://acaoly-inofficial.com/img/comp_site_thumbnail.png">
-  <meta property="og:title" content="ホーム">
+  <meta property="og:title" content="<?php echo ($isok ? $contest['contest_name'] . "の問題一覧" : "問題一覧" )?>">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@acaoly_notifi">
   <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Roboto+Condensed:wght@500&display=swap" rel="stylesheet">
-  <title>ホーム | 学術オリンピック非公式まとめサイト</title>
+  <title><?php echo ($isok ? $contest['contest_name'] . "の問題一覧" : "不正なクエリ" )?> | 学術オリンピック非公式まとめサイト</title>
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/colors.css">
   <link rel="stylesheet" href="/css/form.css">
   <link rel="stylesheet" href="/css/editorial.css">
   <link rel="stylesheet" href="/css/past.css">
-  <link rel="stylesheet" href="/css/problems.css">
+  <link rel="stylesheet" href="/css/problems.css?version=3">
 </head>
 
 <body>
   <?php echo default_header(); ?>
   <h2 class="h2">Problems</h2>
   <div class="basic-container">
-    <p class="contest-title">問題一覧</p>
+    <p class="contest-title"><?php echo ($isok ? $contest['contest_name'] . "の問題一覧" : "不正なクエリ" )?></p>
     <hr>
     <div class="basic-container-inner">
       <div class="buttons-container">
-        <?php 
-          for ($i = 0; $i < count($sets); $i++) {
-            echo '<button type="submit" onclick="location.href=\'problems.php?id='.$ids[0]."-".$ids[1].'-*-*-'.sprintf("%02d", $i + 1).'&m=0\'">'.$sets[$i]['set_name'].'</button>';
+        <?php
+          if ($isok){
+            for ($i = 0; $i < count($sets); $i++) {
+              echo '<button type="submit" onclick="location.href=\'problems.php?id='.$ids[0]."-".$ids[1].'-*-*-'.sprintf("%02d", $i + 1).'&m=0\'" class="set-button">'.$sets[$i]['set_name'].'</button>';
+            }
           }
         ?>
-        <button type="submit" onclick="">リスト</button>
+        <button type="submit" onclick="" class="list-button">リスト</button>
       </div>
       <hr>
-      <h4><?php echo(count($sets) != 0 ? $sets[intval($ids[4], 10) - 1]['set_name'] : ""); ?></h4>
+      <details style="margin: 5px; padding: 5px; border: solid 1px #888; border-radius: 3px;">
+        <summary>問題データ出典</summary>
+        <?php
+          if ($isok) {
+            echo $contest['caption'];
+          }
+        ?>
+      </details>
+      <div style="margin: 5px; border: solid 1px #888; border-radius: 3px; padding: 5px;">
+        問題名が薄く表示されている場合、まだ問題文へのリンクを掲載していません。
+      </div>
+      <?php if (!$isok) echo '<div style="margin: 5px; border: solid 1px #f00; border-radius: 3px; padding: 5px; color: red; font-weight: 600;">
+        不正なクエリを受け取りました。対応するコンテストが存在しないため、問題を表示できません。ブラウザバック等で前のページに戻ってください。
+      </div>'; ?>
+      <h4><?php if ($isok) echo(count($sets) != 0 ? $sets[intval($ids[4], 10) - 1]['set_name'] : ""); ?></h4>
       <div class="table-wrapper">
         <table class="problems-table">
           <tbody>
             <?php 
-              if (count($problems) == 0 || $problems[0]['created_at'] == null) {
+              if (!$isok || count($problems) == 0 || $problems[0]['created_at'] == null) {
                 echo '<tr><td>データがありません</td></tr>';
               }
               else {
@@ -141,18 +189,24 @@
 
                     $genre = implode(',', json_decode($problems[$i]['genre']));
                     $diff = $problems[$i]['difficulty'];
+                    if ($problems[$i]['problem_exists'] == 0) {
+                      $str .= '<td style="opacity: 0.5;">';
+                    }
+                    else {
+                      $str .= '<td>';
+                    }
                     if ($diff >= 2700) {
                       $color = get_difficulty_color_1($diff);
                       $gradient = get_difficulty_color_2($diff);
-                      $str .= '<td><span class="difficulty-text-small" style="color: '.$color.';">'.strval($diff).'</span><span class="problem-genre-text">'.$genre.'</span><a class="problem-name-normal" style="color: '.$color.';" href="problem.php?id='.$problems[$i]['problem_id'].'"><span class="difficulty-icon-normal" style="'.$gradient.'"></span> '.$problems[$i]['problem_name'].'</a></td>';
+                      $str .= '<span class="difficulty-text-small" style="color: '.$color.';">'.strval($diff).($problems[$i]['is_estimated'] == 1 ? '?' : '').'</span><span class="problem-genre-text">'.$genre.'</span><a class="problem-name-normal" style="color: '.$color.';" href="problem.php?id='.$problems[$i]['problem_id'].'"><span class="difficulty-icon-normal" style="'.$gradient.'"></span> '.$problems[$i]['problem_name'].'</a></td>';
                     }
                     else if ($diff >= 1) {
                       $rate = ($diff % 300) / 3;
                       $color = get_difficulty_color_1($diff);
-                      $str .= '<td><span class="difficulty-text-small" style="color: '.$color.';">'.strval($diff).'</span><span class="problem-genre-text">'.$genre.'</span><a class="problem-name-normal" style="color: '.$color.';" href="problem.php?id='.$problems[$i]['problem_id'].'"><span class="difficulty-icon-normal" style="border-color: '.$color.'; background: linear-gradient(to top left, '.$color.' '.strval($rate).'%, #ffffff '.strval($rate).'%);"></span> '.$problems[$i]['problem_name'].'</a></td>';
+                      $str .= '<span class="difficulty-text-small" style="color: '.$color.';">'.strval($diff).($problems[$i]['is_estimated'] == 1 ? '?' : '').'</span><span class="problem-genre-text">'.$genre.'</span><a class="problem-name-normal" style="color: '.$color.';" href="problem.php?id='.$problems[$i]['problem_id'].'"><span class="difficulty-icon-normal" style="border-color: '.$color.'; background: linear-gradient(to top left, '.$color.' '.strval($rate).'%, #ffffff '.strval($rate).'%);"></span> '.$problems[$i]['problem_name'].'</a></td>';
                     }
                     else {
-                      $str .= '<td><span class="problem-genre-text">'.$genre.'</span><a class="problem-name-normal" style="color: #000000;" href="problem.php?id='.$problems[$i]['problem_id'].'">'.$problems[$i]['problem_name'].'</a></td>';
+                      $str .= '<span class="problem-genre-text">'.$genre.'</span><a class="problem-name-normal" style="color: #000000;" href="problem.php?id='.$problems[$i]['problem_id'].'">'.$problems[$i]['problem_name'].'</a></td>';
                     }
                     $cur_count++;
                     

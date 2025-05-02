@@ -11,8 +11,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <meta name="description" content="学術オリンピックや競技科学に関する様々な情報をまとめた非公式サイトのホームページ">
-  <meta property="og:url" content="https://acaoly-inofficial.com/index.php">
+  <meta property="og:url" content="https://acaoly-inofficial.com/about.php">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="学術オリンピック非公式まとめサイト">
   <meta property="og:image" content="https://acaoly-inofficial.com/img/comp_site_thumbnail.png">
@@ -23,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Roboto+Condensed:wght@500&display=swap" rel="stylesheet">
-  <title>ホーム | 学術オリンピック非公式まとめサイト</title>
+  <title>本ウェブサイトについて | 学術オリンピック非公式まとめサイト</title>
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/colors.css">
   <link rel="stylesheet" href="/css/information.css">
@@ -44,7 +43,7 @@
     <p class="basic-text"><a class="username" href="/user/index.php?user=Fernweh" style="color:#0078b8;">Fernweh</a>、<a class="username" href="/user/index.php?user=Fernweh2" style="color:#0078b8;">Fernweh2</a>、<a class="username" href="/user/index.php?user=admin" style="color:#000000;">admin</a>、<a class="username" href="/user/index.php?user=anonymous" style="color:#000000;">anonymous</a></p>
     <hr>
     <p class="basic-text">以下は1問以上解説を書いたユーザーの皆様です。ご協力ありがとうございます。</p>
-    <p class="basic-text"><a class="username" href="/user/index.php?user=Am243" style="color:#000000;">Am243</a></p>
+    <p class="basic-text"><a class="username" href="/user/index.php?user=Am243" style="color:#ff7200;">Am243</a></p>
   </div>
 
   <?php echo default_footer(); ?>

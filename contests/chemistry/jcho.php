@@ -56,7 +56,7 @@
   <link rel="stylesheet" href="/css/past.css">
   <link rel="stylesheet" href="/css/root_index.css">
   <link rel="stylesheet" href="/css/contest.css">
-  <script src="/js/schedule_resize.js"></script>
+  <script src="/js/schedule_resize.js?version=2"></script>
 </head>
 
 <body>
@@ -138,15 +138,9 @@
     </div>
     
     <div class="root-content-item">
-      <a href="../common/problems.php?c="></a>
+      <a href="../common/problems.php?id="></a>
       <h3 class="root-content-item-title">過去問一覧</h3>
       <p class="root-content-item-text">JChOの過去問を掲載しています。</p>
-    </div>
-    
-    <div class="root-content-item">
-      <a href="../common/editorial_request.php"></a>
-      <h3 class="root-content-item-title">ユーザー解説需要リスト</h3>
-      <p class="root-content-item-text">まだユーザー解説が無い過去問のうち、解説の需要が大きいものを挙げています (登録ユーザー向け機能)。</p>
     </div>
     
     <div class="root-content-item">

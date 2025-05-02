@@ -44,6 +44,30 @@ function validation($datas,$confirm = true)
   return $errors;
 }
 
+function validation2($datas) {
+  $errors = [];
+
+  if(!empty($datas['color']) && !preg_match('/\A[0-9A-Fa-f]{6}\z/i', $datas['color'])){
+    $errors['color'] = "カラーコードが間違っています。";
+  }
+
+  if(!empty($datas['year']) && !preg_match('/\A[0-9]{1,20}+\z/i',$datas["year"])){
+    $errors['year'] = "半角数字以外の文字は使えません。";
+  }else if(strlen($datas['year']) > 12) {
+    $errors['year'] = '12文字以内で入力してください。';
+  }
+
+  if(mb_strlen($datas['affiliation'], 'UTF-8') > 64){
+    $errors['affiliation'] = "64バイト以内で入力してください。";
+  }
+
+  if(mb_strlen($datas['introduction'], 'UTF-8') > 128) {
+    $errors['introduction'] = '128バイト以内で入力してください。';
+  }
+
+  return $errors;
+}
+
 function console_log($data){
   echo '<script>';
   echo 'console.log('.json_encode($data).')';

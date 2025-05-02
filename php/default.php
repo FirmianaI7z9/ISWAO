@@ -230,7 +230,7 @@ function format_schedule($item) {
 function format_schedule_with_month($str, $is_encode) {
   if ($is_encode) {
     $patterns = array();
-    for ($i = 0; $i < 12 * 10; $i++) {
+    for ($i = 0; $i < 12 * 30; $i++) {
       $patterns[$i] = '/\[('.strval(2020 + floor($i / 12)).')('.sprintf('%02d', $i % 12 + 1).')\]/';
     }
     return preg_replace('/\[[0-9]{6}\]/', '', preg_replace($patterns, '<p class="schedule-date"><span class="schedule-year">$1.</span>$2</p>', $str, 1));

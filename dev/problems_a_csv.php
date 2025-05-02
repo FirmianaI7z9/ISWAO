@@ -39,12 +39,13 @@
       var val = { "table" : "problems", "arg" : [] };
       var dit = document.getElementsByClassName('dit');
       var values = dit[0].value.split('\n');
+      console.log(values);
       for (let i = 0; i < values.length; i++) {
         var value = values[i].split(',');
         var item = {
           "problem_id": value[0],
           "problem_name": value[1],
-          "genre": value[2],
+          "genre": "[\""+value[2].replace("/","\",\"")+"\"]",
           "correct_rate": Number(value[3]),
           "difficulty": Number(value[4])
         };

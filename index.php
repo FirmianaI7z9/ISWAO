@@ -60,7 +60,7 @@
   <link rel="stylesheet" href="/css/schedule.css">
   <link rel="stylesheet" href="/css/root_index.css">
   <link rel="stylesheet" href="/css/past.css">
-  <script src="/js/schedule_resize.js"></script>
+  <script src="/js/schedule_resize.js?version=2"></script>
 </head>
 
 <body>
@@ -217,7 +217,7 @@
       <ul class="root-genre-item-list">
         <li><span class="tag background-mathematics color-black">JMO</span>日本数学オリンピック</li>
         <li><span class="tag background-mathematics color-black">JJMO</span>日本ジュニア数学オリンピック</li>
-        <li><span class="tag background-mathematics color-black">EGMOqual</span>EGMO一次選抜</li>
+        <li><span class="tag background-mathematics color-black">JGMO</span>日本女子数学オリンピック</li>
         <li><span class="tag background-mathematics color-black">IMO</span>国際数学オリンピック</li>
         <li><span class="tag background-mathematics color-black">EGMO</span>ヨーロッパ女子数学オリンピック</li>
         <li><span class="tag background-mathematics color-black">APMO</span>アジア太平洋数学オリンピック</li>
@@ -350,6 +350,7 @@
       <a href="contests/ai/index.php"></a>
       <h3 class="root-genre-item-title background-ai color-white">人工知能</h3>
       <ul class="root-genre-item-list">
+      <li><span class="tag background-ai color-white">JOAI</span>日本人工知能オリンピック</li>
         <li><span class="tag background-ai color-white">IOAI</span>国際人工知能オリンピック</li>
       </ul>
     </div>

@@ -21,12 +21,16 @@
                         INNER JOIN `problemsets`
                           ON `problemsets`.`set_id` = SUBSTRING(`problems`.`problem_id`, 1, 15)
                         WHERE `problem_id` = :id;");
-  $pre->bindValue(":id", $id, PDO::PARAM_INT);
+  $pre->bindValue(":id", $id, PDO::PARAM_STR);
   $pre->execute();
   $problem = $pre->fetch();
+
+  if ($problem == false) {
+    return;
+  }
   
   $pre = $pdo->prepare("SELECT * FROM `problemlinks` WHERE FIND_IN_SET(:id, `problem_ids`) <> 0;");
-  $pre->bindValue(":id", $id, PDO::PARAM_INT);
+  $pre->bindValue(":id", $id, PDO::PARAM_STR);
   $pre->execute();
   $problemlinks = $pre->fetchAll();
 
@@ -124,6 +128,10 @@
         <table class="user-profile-item-table">
           <tbody>
             <tr>
+              <th>ID</th>
+              <td style="font-family: 'Roboto Condensed';"><?php echo $id; ?></td>
+            </tr>
+            <tr>
               <th>出題場所</th>
               <td><?php echo $problem['contest_name']; ?> - <?php echo $problem['set_name']; ?></td>
             </tr>
@@ -137,7 +145,31 @@
             </tr>
             <tr>
               <th>Difficulty</th>
-              <td><?php echo ($problem['correct_rate'] < -0.5 ? '---' : $problem['difficulty']); ?></td>
+              <td><?php
+                if ($problem['difficulty'] <= 0) {
+                  echo '---';
+                }
+                else{
+                  // indicator
+                  $diff = $problem['difficulty'];
+                  $rate = ($diff % 300) / 3;
+                  $color = get_difficulty_color_1($diff);
+                  if ($diff >= 2700) {
+                    $gradient = get_difficulty_color_2($diff);
+                    for ($i = 0; $i < ($diff + 1) / 300; $i++) {
+                      echo '<span class="difficulty-icon-normal" style="'.$gradient.'"></span>';
+                    }
+                  }
+                  else {
+                    for ($i = 0; $i < ($diff + 1) / 300 - 1; $i++) {
+                      echo '<span class="difficulty-icon-normal" style="border-color: '.$color.'; background-color: '.$color.'"></span>';
+                    }
+                    echo '<span class="difficulty-icon-normal" style="border-color: '.$color.'; background: linear-gradient(to top left, '.$color.' '.strval($rate).'%, #ffffff '.strval($rate).'%);"></span>';
+                  }
+                  // rating
+                  echo '<span style="font-family: \'Roboto Condensed\'; margin-left: 5px; color: '.$color.';">'.strval($diff).'</span>';
+                }
+              ?></td>
             </tr>
           </tbody>
         </table>

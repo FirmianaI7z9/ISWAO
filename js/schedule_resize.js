@@ -13,7 +13,7 @@ function resizewidth() {
   var basewidth = Number(size.width.substring(0, size.width.length - 2));
   var canvas = document.createElement('canvas');
   var context = canvas.getContext('2d');
-  context.font = '18px \'Noto Sans JP\', sans-serif';
+  context.font = 'normal 600 18px \'Noto Sans JP\', sans-serif';
   for (let i = 0; i < items.length; i++) {
     var metrics = context.measureText(items[i].innerText);
     var width = metrics.width;

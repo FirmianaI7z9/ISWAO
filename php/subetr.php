@@ -19,6 +19,6 @@ if ($type != -1) {
   $pre = $pdo->prepare("UPDATE `editorials` SET `text` = :t, `status` = :s WHERE `id` = :i;");
   $pre->bindValue(":t", $data->text, PDO::PARAM_STR);
   $pre->bindValue(":s", $type, PDO::PARAM_INT);
-  $pre->bindValue(":i", $_SESSION['editorial_id']);
+  $pre->bindValue(":i", $data->eid);
   $pre->execute();
 }
